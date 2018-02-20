@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Phoebe's blog</title>
+        <link rel="stylesheet" href="http://33phoebe.github.io/theme/css/main.css" />
+        <link href="http://33phoebe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Phoebe's blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://33phoebe.github.io/">Phoebe's blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://33phoebe.github.io/category/posts.html">posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://33phoebe.github.io/fandango-review.html">Is Fandango Review skewed?</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-02-21T12:00:00-05:00">
+                Published: Wed 21 February 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://33phoebe.github.io/author/phoebe-zheng.html">Phoebe Zheng</a>
+        </address>
+<p>In <a href="http://33phoebe.github.io/category/posts.html">posts</a>.</p>
+<p>tags: <a href="http://33phoebe.github.io/tag/movie.html">Movie</a> </p>
+</footer><!-- /.post-info --><style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">movies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/fandango_score_comparison.csv&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">movies</span><span class="p">[</span><span class="s2">&quot;Metacritic_norm_round&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">movies</span><span class="p">[</span><span class="s2">&quot;Fandango_Stars&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x10e606128&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>metacritic is more normally distributed, with the highest freq occurs in the middle, around 3 points. Also a fair amount of movies have lower values and some at higher</li>
+<li>fandango's stars are skewed, with highest freq occurs around 4.5, which is significantly higher than the metacritic record. Also, there is no movie having a score lower than 3, and quite a few at 5.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fan</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="s2">&quot;Fandango_Stars&quot;</span><span class="p">]</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="s2">&quot;Metacritic_norm_round&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fandango Mean:&quot;</span><span class="p">,</span><span class="n">fan</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Metacritic Mean:&quot;</span><span class="p">,</span><span class="n">meta</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fandango Median:&quot;</span><span class="p">,</span> <span class="n">fan</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Metacritic Median:&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fandango Stdev:&quot;</span><span class="p">,</span> <span class="n">fan</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Metacritic Stdev:&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Fandango Mean: 4.089041095890411 
+Metacritic Mean: 2.9726027397260273
+Fandango Median: 4.0 
+Metacritic Median: 3.0
+Fandango Stdev: 0.5403859779787333 
+Metacritic Stdev: 0.9909605613743364
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fandango doesn't explain in much details of their methodology, only vaguely mentions they incorporate a few sources; metacritics explains it uses a 100-point weighted average based on the critic's input and how their reviews are categorized into three groups representing their quality.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Metacritic's mean is fairly close to median, slightly lower, as the graph above shows, metacritics have more higher rated movies than the ones that have really bad reviews, which make sense. And the fact that these two numbers are close represent the existence of outliers are moderate. On the other hand, the reviews of Fandango skews to the right, with the highest freq occurs at 4.5, which isn't normal given the perfect score is 5. </li>
+<li>Fandango's star system is based on a 5 point discrete rating system, and the mininum value is around 3, made the range of variance very small; and metacritic scores, although of significant amount, are converted from a 100-point system and have more variety, also, even not in large amount, they have movies have extreme scores and make the variance much higher.</li>
+<li>The mean of Fandango is much higher than Metacritic shows that its score is skewed.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">fan</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;fandango stars&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;metacritic review&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[37]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0,0.5,&#39;metacritic review&#39;)</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">movies</span><span class="p">[</span><span class="s2">&quot;fm_diff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fan</span> <span class="o">-</span> <span class="n">meta</span><span class="p">)</span>
+<span class="n">movies</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;fm_diff&quot;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">movies</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[43]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FILM</th>
+      <th>RottenTomatoes</th>
+      <th>RottenTomatoes_User</th>
+      <th>Metacritic</th>
+      <th>Metacritic_User</th>
+      <th>IMDB</th>
+      <th>Fandango_Stars</th>
+      <th>Fandango_Ratingvalue</th>
+      <th>RT_norm</th>
+      <th>RT_user_norm</th>
+      <th>...</th>
+      <th>RT_norm_round</th>
+      <th>RT_user_norm_round</th>
+      <th>Metacritic_norm_round</th>
+      <th>Metacritic_user_norm_round</th>
+      <th>IMDB_norm_round</th>
+      <th>Metacritic_user_vote_count</th>
+      <th>IMDB_user_vote_count</th>
+      <th>Fandango_votes</th>
+      <th>Fandango_Difference</th>
+      <th>fm_diff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>Do You Believe? (2015)</td>
+      <td>18</td>
+      <td>84</td>
+      <td>22</td>
+      <td>4.7</td>
+      <td>5.4</td>
+      <td>5.0</td>
+      <td>4.5</td>
+      <td>0.90</td>
+      <td>4.20</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>2.5</td>
+      <td>2.5</td>
+      <td>31</td>
+      <td>3136</td>
+      <td>1793</td>
+      <td>0.5</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Annie (2014)</td>
+      <td>27</td>
+      <td>61</td>
+      <td>33</td>
+      <td>4.8</td>
+      <td>5.2</td>
+      <td>4.5</td>
+      <td>4.2</td>
+      <td>1.35</td>
+      <td>3.05</td>
+      <td>...</td>
+      <td>1.5</td>
+      <td>3.0</td>
+      <td>1.5</td>
+      <td>2.5</td>
+      <td>2.5</td>
+      <td>108</td>
+      <td>19222</td>
+      <td>6835</td>
+      <td>0.3</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Pixels (2015)</td>
+      <td>17</td>
+      <td>54</td>
+      <td>27</td>
+      <td>5.3</td>
+      <td>5.6</td>
+      <td>4.5</td>
+      <td>4.1</td>
+      <td>0.85</td>
+      <td>2.70</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2.5</td>
+      <td>1.5</td>
+      <td>2.5</td>
+      <td>3.0</td>
+      <td>246</td>
+      <td>19521</td>
+      <td>3886</td>
+      <td>0.4</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>134</th>
+      <td>The Longest Ride (2015)</td>
+      <td>31</td>
+      <td>73</td>
+      <td>33</td>
+      <td>4.8</td>
+      <td>7.2</td>
+      <td>4.5</td>
+      <td>4.5</td>
+      <td>1.55</td>
+      <td>3.65</td>
+      <td>...</td>
+      <td>1.5</td>
+      <td>3.5</td>
+      <td>1.5</td>
+      <td>2.5</td>
+      <td>3.5</td>
+      <td>49</td>
+      <td>25214</td>
+      <td>2603</td>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>Paul Blart: Mall Cop 2 (2015)</td>
+      <td>5</td>
+      <td>36</td>
+      <td>13</td>
+      <td>2.4</td>
+      <td>4.3</td>
+      <td>3.5</td>
+      <td>3.5</td>
+      <td>0.25</td>
+      <td>1.80</td>
+      <td>...</td>
+      <td>0.5</td>
+      <td>2.0</td>
+      <td>0.5</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>211</td>
+      <td>15004</td>
+      <td>3054</td>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">pearsonr</span>
+<span class="n">r</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">fan</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.178449190739 0.0311615162285
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The correlation is fairly low, while the significance is relatively high, it could mean either metacritic isn't a major source for fandango score, thus their scores are independent of each other; or fandango score has been altered from original scores severely based on metacritic score, thus the covariance compared to their individual variance is low.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">linregress</span>
+<span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">stderr_slope</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">fan</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
+<span class="n">pred_3</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">intercept</span>
+<span class="n">pred_1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">intercept</span>
+<span class="n">pred_5</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">intercept</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_3</span><span class="p">,</span> <span class="n">pred_1</span><span class="p">,</span> <span class="n">pred_5</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.0973110779739 3.7997739189 0.178449190739 0.0311615162285
+4.09170715282 3.89708499687 4.28632930877
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Based on the linear regression model, a movie with a 3.0 score would get it a 4.09 on Fandango, more than 1 whole point higher</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">pred_1</span><span class="p">,</span> <span class="n">pred_5</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">fan</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here are some potential next steps:</p>
+<ul>
+<li>Explore the other rating services, IMDB and RottenTomatoes.<ul>
+<li>See how they differ from each other.</li>
+<li>See how they differ from Fandango.</li>
+</ul>
+</li>
+<li>See how user scores differ from critic scores.</li>
+<li>Acquire more recent review data, and see if the pattern of Fandango inflating reviews persists.</li>
+<li>Dig more into why certain movies had their scores inflated more than others.</li>
+</ul>
+<p>We recommend creating a Github repository and placing this project there. It will help other people, including employers, see your work. As you start to put multiple projects on Github, you'll have the beginnings of a strong portfolio.</p>
+
+</div>
+</div>
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://33phoebe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
