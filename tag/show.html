@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Phoebe's blog - show</title>
+        <link rel="stylesheet" href="https://33phoebe.github.io/theme/css/main.css" />
+        <link href="https://33phoebe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Phoebe's blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://33phoebe.github.io/">Phoebe's blog </a></h1>
+                <nav><ul>
+                    <li><a href="https://33phoebe.github.io/category/posts.html">posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://33phoebe.github.io/oscar.html">Explore Oscar Nominees Data with sqlite3 and pandas</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-02-13T12:00:00-05:00">
+                Published: Tue 13 February 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://33phoebe.github.io/author/phoebe-zheng.html">Phoebe Zheng</a>
+        </address>
+<p>In <a href="https://33phoebe.github.io/category/posts.html">posts</a>.</p>
+<p>tags: <a href="https://33phoebe.github.io/tag/show.html">show</a> </p>
+</footer><!-- /.post-info --><style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/academy_awards.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>          Year               Category          Nominee  \
+0  2010 (83rd)  Actor -- Leading Role    Javier Bardem   
+1  2010 (83rd)  Actor -- Leading Role     Jeff Bridges   
+2  2010 (83rd)  Actor -- Leading Role  Jesse Eisenberg   
+3  2010 (83rd)  Actor -- Leading Role      Colin Firth   
+4  2010 (83rd)  Actor -- Leading Role     James Franco   
+
+                          Additional Info Won? Unnamed: 5 Unnamed: 6  \
+0                      Biutiful {&#39;Uxbal&#39;}   NO        NaN        NaN   
+1           True Grit {&#39;Rooster Cogburn&#39;}   NO        NaN        NaN   
+2  The Social Network {&#39;Mark Zuckerberg&#39;}   NO        NaN        NaN   
+3    The King&#39;s Speech {&#39;King George VI&#39;}  YES        NaN        NaN   
+4              127 Hours {&#39;Aron Ralston&#39;}   NO        NaN        NaN   
+
+  Unnamed: 7 Unnamed: 8 Unnamed: 9 Unnamed: 10  
+0        NaN        NaN        NaN         NaN  
+1        NaN        NaN        NaN         NaN  
+2        NaN        NaN        NaN         NaN  
+3        NaN        NaN        NaN         NaN  
+4        NaN        NaN        NaN         NaN  
+(10137, 11)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>this dataset is a edited version of kaggle's academy-awards dataset, include all the nominees and winners in Oscar history 1927-2010</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unnamed_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unnamed_cols</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>NO                                                                                                                                                                                              7168
+YES                                                                                                                                                                                             2955
+ water and avalanches with familiar operators inspired by image compositing and painting operations. [Digital Imaging Technology]&#34;                                                                 1
+000 agents were controlled in several scenes. [Digital Imaging Technology]&#34;                                                                                                                        1
+ as well as 3D prosthetic appliances ranging in size from small wounds to entire torsos. They utilize self-adhesive material that features an unprecedented combination of tissue-thin edges       1
+ the Academy presents a Special Award to that master of fun                                                                                                                                        1
+ complex cloth could be achieved efficiently and robustly. Their work provided the conceptual foundation for many cloth simulation systems in use today. [Digital Imaging Technology]&#34;             1
+ direct radiator style motion picture loudspeaker systems. The work of John M. Eargle                                                                                                              1
+ for his contributions to the development of motion pictures as entertainment.&#34;                                                                                                                    1
+ economic and realistic filming of action sequences that may involve principal actors and dialogue. [Stage Operations]&#34;                                                                            1
+ this premier reference manual has had a significant impact on decades of motion picture photography around the world.&#34;                                                                            1
+ and Tails&#34; numbers from Top Hat [came in 2nd]&#34;                                                                                                                                                    1
+ which significantly reduces the need for painstaking                                                                                                                                              1
+ deforming objects. [Digital Imaging Technology]&#34;                                                                                                                                                  1
+ the &#34;Caricature&#34; system provides a degree of subtlety and refinement not possible with other systems. [Special Photographic]&#34;                                                                     1
+ more conventional fog units. [Stage Operations]&#34;                                                                                                                                                  1
+Name: Won?, dtype: int64
+*                                                                                                               7
+ discoverer of stars                                                                                            1
+ resilience                                                                                                     1
+ error-prone measurements on sets. [Digital Imaging Technology]&#34;                                                1
+ D.B. &#34;Don&#34; Keele and Mark E. Engebretson has resulted in the over 20-year dominance of constant-directivity    1
+Name: Unnamed: 5, dtype: int64
+*                                                                   9
+ direct radiator bass style cinema loudspeaker systems. [Sound]&#34;    1
+ flexibility and water resistance                                   1
+ sympathetic                                                        1
+Name: Unnamed: 6, dtype: int64
+*                                                     1
+ while requiring no dangerous solvents. [Systems]&#34;    1
+ kindly                                               1
+Name: Unnamed: 7, dtype: int64
+ understanding comedy genius - Mack Sennett.&#34;&#34;    1
+*                                                 1
+Name: Unnamed: 8, dtype: int64
+*    1
+Name: Unnamed: 9, dtype: int64
+*    1
+Name: Unnamed: 10, dtype: int64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#remove additional info from var &quot;Year&quot; and convert it to integer</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>   Year               Category          Nominee  \
+0  2010  Actor -- Leading Role    Javier Bardem   
+1  2010  Actor -- Leading Role     Jeff Bridges   
+2  2010  Actor -- Leading Role  Jesse Eisenberg   
+3  2010  Actor -- Leading Role      Colin Firth   
+4  2010  Actor -- Leading Role     James Franco   
+
+                          Additional Info Won? Unnamed: 5 Unnamed: 6  \
+0                      Biutiful {&#39;Uxbal&#39;}   NO        NaN        NaN   
+1           True Grit {&#39;Rooster Cogburn&#39;}   NO        NaN        NaN   
+2  The Social Network {&#39;Mark Zuckerberg&#39;}   NO        NaN        NaN   
+3    The King&#39;s Speech {&#39;King George VI&#39;}  YES        NaN        NaN   
+4              127 Hours {&#39;Aron Ralston&#39;}   NO        NaN        NaN   
+
+  Unnamed: 7 Unnamed: 8 Unnamed: 9 Unnamed: 10  
+0        NaN        NaN        NaN         NaN  
+1        NaN        NaN        NaN         NaN  
+2        NaN        NaN        NaN         NaN  
+3        NaN        NaN        NaN         NaN  
+4        NaN        NaN        NaN         NaN  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#filter out the awards after 2000</span>
+<span class="n">lt2000</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="p">]</span>
+<span class="n">lt2000</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(1294, 11)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#filter out the categories that are not within the actor-related categories</span>
+<span class="n">award_categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Actress -- Supporting Role&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor -- Leading Role&quot;</span><span class="p">,</span> <span class="s2">&quot;Actress -- Leading Role&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor -- Supporting Role&quot;</span><span class="p">]</span>
+<span class="n">nominations</span> <span class="o">=</span> <span class="n">lt2000</span><span class="p">[</span><span class="n">lt2000</span><span class="p">[</span><span class="s2">&quot;Category&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">award_categories</span><span class="p">)]</span>
+<span class="n">nominations</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(200, 11)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">yes_no</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;YES&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;NO&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="n">nominations</span><span class="p">[</span><span class="s2">&quot;Won&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nominations</span><span class="p">[</span><span class="s2">&quot;Won?&quot;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Applications/anaconda3/lib/python3.6/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nominations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[37]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Category</th>
+      <th>Nominee</th>
+      <th>Additional Info</th>
+      <th>Won?</th>
+      <th>Unnamed: 5</th>
+      <th>Unnamed: 6</th>
+      <th>Unnamed: 7</th>
+      <th>Unnamed: 8</th>
+      <th>Unnamed: 9</th>
+      <th>Unnamed: 10</th>
+      <th>Won</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>Javier Bardem</td>
+      <td>Biutiful {'Uxbal'}</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>Jeff Bridges</td>
+      <td>True Grit {'Rooster Cogburn'}</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>Jesse Eisenberg</td>
+      <td>The Social Network {'Mark Zuckerberg'}</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>Colin Firth</td>
+      <td>The King's Speech {'King George VI'}</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>James Franco</td>
+      <td>127 Hours {'Aron Ralston'}</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unnamed_cols</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[39]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;Won?&#39;,
+ &#39;Unnamed: 5&#39;,
+ &#39;Unnamed: 6&#39;,
+ &#39;Unnamed: 7&#39;,
+ &#39;Unnamed: 8&#39;,
+ &#39;Unnamed: 9&#39;,
+ &#39;Unnamed: 10&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_nominations</span> <span class="o">=</span> <span class="n">nominations</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">unnamed_cols</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">final_nominations</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[43]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(200, 5)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">addinfo1</span> <span class="o">=</span> <span class="n">final_nominations</span><span class="p">[</span><span class="s2">&quot;Additional Info&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;&#39;}&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">addinfo1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0                                        Biutiful {&#39;Uxbal
+1                             True Grit {&#39;Rooster Cogburn
+2                    The Social Network {&#39;Mark Zuckerberg
+3                      The King&#39;s Speech {&#39;King George VI
+4                                127 Hours {&#39;Aron Ralston
+5                              The Fighter {&#39;Dicky Eklund
+6                                Winter&#39;s Bone {&#39;Teardrop
+7                               The Town {&#39;James Coughlin
+8                           The Kids Are All Right {&#39;Paul
+9                        The King&#39;s Speech {&#39;Lionel Logue
+10                           The Kids Are All Right {&#39;Nic
+11                                    Rabbit Hole {&#39;Becca
+12                                    Winter&#39;s Bone {&#39;Ree
+13                Black Swan {&#39;Nina Sayers/The Swan Queen
+14                                 Blue Valentine {&#39;Cindy
+15                         The Fighter {&#39;Charlene Fleming
+16                    The King&#39;s Speech {&#39;Queen Elizabeth
+17                               The Fighter {&#39;Alice Ward
+18                                True Grit {&#39;Mattie Ross
+19                   Animal Kingdom {&#39;Janine &#39;Smurf&#39; Cody
+135                               Crazy Heart {&#39;Bad Blake
+136                          Up in the Air {&#39;Ryan Bingham
+137                                 A Single Man {&#39;George
+138                             Invictus {&#39;Nelson Mandela
+139        The Hurt Locker {&#39;Staff Sergeant William James
+140                           Invictus {&#39;Francois Pienaar
+141                    The Messenger {&#39;Captain Tony Stone
+142                            The Last Station {&#39;Tolstoy
+143                      The Lovely Bones {&#39;George Harvey
+144                Inglourious Basterds {&#39;Col. Hans Landa
+                              ...                        
+1040                                  Frida {&#39;Frida Kahlo
+1041                           The Hours {&#39;Virginia Woolf
+1042                           Unfaithful {&#39;Connie Sumner
+1043                     Far from Heaven {&#39;Cathy Whitaker
+1044                                 Chicago {&#39;Roxie Hart
+1045                      About Schmidt {&#39;Roberta Hertzel
+1046                              The Hours {&#39;Laura Brown
+1047                         Chicago {&#39;Matron Mama Morton
+1048                            Adaptation {&#39;Susan Orlean
+1049                                Chicago {&#39;Velma Kelly
+1157                         A Beautiful Mind {&#39;John Nash
+1158                                I Am Sam {&#39;Sam Dawson
+1159                                   Ali {&#39;Muhammad Ali
+1160                                Training Day {&#39;Alonzo
+1161                         In the Bedroom {&#39;Matt Fowler
+1162                                   Iris {&#39;John Bayley
+1163                                  Training Day {&#39;Jake
+1164                               Sexy Beast {&#39;Don Logan
+1165    The Lord of the Rings: The Fellowship of the R...
+1166                                  Ali {&#39;Howard Cosell
+1167                    Monster&#39;s Ball {&#39;Leticia Musgrove
+1168                                  Iris {&#39;Iris Murdoch
+1169                                Moulin Rouge {&#39;Satine
+1170                         In the Bedroom {&#39;Ruth Fowler
+1171                Bridget Jones&#39;s Diary {&#39;Bridget Jones
+1172                       A Beautiful Mind {&#39;Alicia Nash
+1173                           Gosford Park {&#39;Mrs. Wilson
+1174       Gosford Park {&#39;Constance, Countess of Trentham
+1175                      In the Bedroom {&#39;Natalie Strout
+1176                            Iris {&#39;Young Iris Murdoch
+Name: Additional Info, Length: 200, dtype: object
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">movie</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">characters</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">addinfo1</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; {&#39;&quot;</span><span class="p">)</span>
+    <span class="n">movie</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">characters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">final_nominations</span><span class="p">[</span><span class="s2">&quot;Movie&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">movie</span>
+<span class="n">final_nominations</span><span class="p">[</span><span class="s2">&quot;Character&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">characters</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">final_nominations</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>   Year                  Category          Nominee  \
+0  2010     Actor -- Leading Role    Javier Bardem   
+1  2010     Actor -- Leading Role     Jeff Bridges   
+2  2010     Actor -- Leading Role  Jesse Eisenberg   
+3  2010     Actor -- Leading Role      Colin Firth   
+4  2010     Actor -- Leading Role     James Franco   
+5  2010  Actor -- Supporting Role   Christian Bale   
+6  2010  Actor -- Supporting Role      John Hawkes   
+7  2010  Actor -- Supporting Role    Jeremy Renner   
+8  2010  Actor -- Supporting Role     Mark Ruffalo   
+9  2010  Actor -- Supporting Role    Geoffrey Rush   
+
+                          Additional Info  Won                   Movie  \
+0                      Biutiful {&#39;Uxbal&#39;}    0                Biutiful   
+1           True Grit {&#39;Rooster Cogburn&#39;}    0               True Grit   
+2  The Social Network {&#39;Mark Zuckerberg&#39;}    0      The Social Network   
+3    The King&#39;s Speech {&#39;King George VI&#39;}    1       The King&#39;s Speech   
+4              127 Hours {&#39;Aron Ralston&#39;}    0               127 Hours   
+5            The Fighter {&#39;Dicky Eklund&#39;}    1             The Fighter   
+6              Winter&#39;s Bone {&#39;Teardrop&#39;}    0           Winter&#39;s Bone   
+7             The Town {&#39;James Coughlin&#39;}    0                The Town   
+8         The Kids Are All Right {&#39;Paul&#39;}    0  The Kids Are All Right   
+9      The King&#39;s Speech {&#39;Lionel Logue&#39;}    0       The King&#39;s Speech   
+
+         Character  
+0            Uxbal  
+1  Rooster Cogburn  
+2  Mark Zuckerberg  
+3   King George VI  
+4     Aron Ralston  
+5     Dicky Eklund  
+6         Teardrop  
+7   James Coughlin  
+8             Paul  
+9     Lionel Logue  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_nominations</span> <span class="o">=</span> <span class="n">final_nominations</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Additional Info&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_nominations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[54]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Category</th>
+      <th>Nominee</th>
+      <th>Won</th>
+      <th>Movie</th>
+      <th>Character</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>Javier Bardem</td>
+      <td>0</td>
+      <td>Biutiful</td>
+      <td>Uxbal</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>Jeff Bridges</td>
+      <td>0</td>
+      <td>True Grit</td>
+      <td>Rooster Cogburn</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>Jesse Eisenberg</td>
+      <td>0</td>
+      <td>The Social Network</td>
+      <td>Mark Zuckerberg</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>Colin Firth</td>
+      <td>1</td>
+      <td>The King's Speech</td>
+      <td>King George VI</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2010</td>
+      <td>Actor -- Leading Role</td>
+      <td>James Franco</td>
+      <td>0</td>
+      <td>127 Hours</td>
+      <td>Aron Ralston</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#automatically setup new database and pass in data with pandas.to_sql method</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;nominations.db&quot;</span><span class="p">)</span>
+<span class="n">final_nominations</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;nominations&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;pragma table_info(nominations)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;nominations.db&quot;</span><span class="p">)</span>
+<span class="n">first_ten</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from nominations limit 10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(0, &#39;Year&#39;, &#39;INTEGER&#39;, 0, None, 0)
+(1, &#39;Category&#39;, &#39;TEXT&#39;, 0, None, 0)
+(2, &#39;Nominee&#39;, &#39;TEXT&#39;, 0, None, 0)
+(3, &#39;Won&#39;, &#39;INTEGER&#39;, 0, None, 0)
+(4, &#39;Movie&#39;, &#39;TEXT&#39;, 0, None, 0)
+(5, &#39;Character&#39;, &#39;TEXT&#39;, 0, None, 0)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">first_ten</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(2010, &#39;Actor -- Leading Role&#39;, &#39;Javier Bardem&#39;, 0, &#39;Biutiful&#39;, &#39;Uxbal&#39;)
+(2010, &#39;Actor -- Leading Role&#39;, &#39;Jeff Bridges&#39;, 0, &#39;True Grit&#39;, &#39;Rooster Cogburn&#39;)
+(2010, &#39;Actor -- Leading Role&#39;, &#39;Jesse Eisenberg&#39;, 0, &#39;The Social Network&#39;, &#39;Mark Zuckerberg&#39;)
+(2010, &#39;Actor -- Leading Role&#39;, &#39;Colin Firth&#39;, 1, &#34;The King&#39;s Speech&#34;, &#39;King George VI&#39;)
+(2010, &#39;Actor -- Leading Role&#39;, &#39;James Franco&#39;, 0, &#39;127 Hours&#39;, &#39;Aron Ralston&#39;)
+(2010, &#39;Actor -- Supporting Role&#39;, &#39;Christian Bale&#39;, 1, &#39;The Fighter&#39;, &#39;Dicky Eklund&#39;)
+(2010, &#39;Actor -- Supporting Role&#39;, &#39;John Hawkes&#39;, 0, &#34;Winter&#39;s Bone&#34;, &#39;Teardrop&#39;)
+(2010, &#39;Actor -- Supporting Role&#39;, &#39;Jeremy Renner&#39;, 0, &#39;The Town&#39;, &#39;James Coughlin&#39;)
+(2010, &#39;Actor -- Supporting Role&#39;, &#39;Mark Ruffalo&#39;, 0, &#39;The Kids Are All Right&#39;, &#39;Paul&#39;)
+(2010, &#39;Actor -- Supporting Role&#39;, &#39;Geoffrey Rush&#39;, 0, &#34;The King&#39;s Speech&#34;, &#39;Lionel Logue&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">years_hosts</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2010</span><span class="p">,</span> <span class="s2">&quot;Steve Martin&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2009</span><span class="p">,</span> <span class="s2">&quot;Hugh Jackman&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2008</span><span class="p">,</span> <span class="s2">&quot;Jon Stewart&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2007</span><span class="p">,</span> <span class="s2">&quot;Ellen DeGeneres&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2006</span><span class="p">,</span> <span class="s2">&quot;Jon Stewart&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2005</span><span class="p">,</span> <span class="s2">&quot;Chris Rock&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2004</span><span class="p">,</span> <span class="s2">&quot;Billy Crystal&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2003</span><span class="p">,</span> <span class="s2">&quot;Steve Martin&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="s2">&quot;Whoopi Goldberg&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2001</span><span class="p">,</span> <span class="s2">&quot;Steve Martin&quot;</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="s2">&quot;Billy Crystal&quot;</span><span class="p">),</span>
+            <span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">create table ceremonies(</span>
+<span class="s1">id integer PRIMARY KEY,</span>
+<span class="s1">Year integer,</span>
+<span class="s1">Host text)&#39;&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">insert_query</span> <span class="o">=</span> <span class="s2">&quot;INSERT  INTO ceremonies (Year, Host) VALUES (?, ?);&quot;</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">insert_query</span><span class="p">,</span> <span class="n">years_hosts</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[76]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127abe30&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from ceremonies limit 10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[77]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(1, 2010, &#39;Steve Martin&#39;),
+ (2, 2009, &#39;Hugh Jackman&#39;),
+ (3, 2008, &#39;Jon Stewart&#39;),
+ (4, 2007, &#39;Ellen DeGeneres&#39;),
+ (5, 2006, &#39;Jon Stewart&#39;),
+ (6, 2005, &#39;Chris Rock&#39;),
+ (7, 2004, &#39;Billy Crystal&#39;),
+ (8, 2003, &#39;Steve Martin&#39;),
+ (9, 2002, &#39;Whoopi Goldberg&#39;),
+ (10, 2001, &#39;Steve Martin&#39;)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;pragma table_info(ceremonies)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[78]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(0, &#39;id&#39;, &#39;integer&#39;, 0, None, 1),
+ (1, &#39;Year&#39;, &#39;integer&#39;, 0, None, 0),
+ (2, &#39;Host&#39;, &#39;text&#39;, 0, None, 0)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#turn on foreign key constraints</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON;&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[79]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127abc70&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">innerjoin</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">SELECT nominations.category, nominations.nominee, nominations.movie, nominations.character, nominations.won, ceremonies.id</span>
+<span class="s1">FROM nominations</span>
+<span class="s1">INNER JOIN ceremonies ON</span>
+<span class="s1">nominations.year == ceremonies.year</span>
+<span class="s1">;&#39;&#39;&#39;</span>
+
+<span class="n">nomination2</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">innerjoin</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nomination2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[(&#39;Actor -- Leading Role&#39;, &#39;Javier Bardem&#39;, &#39;Biutiful&#39;, &#39;Uxbal&#39;, 0, 1), (&#39;Actor -- Leading Role&#39;, &#39;Jeff Bridges&#39;, &#39;True Grit&#39;, &#39;Rooster Cogburn&#39;, 0, 1), (&#39;Actor -- Leading Role&#39;, &#39;Jesse Eisenberg&#39;, &#39;The Social Network&#39;, &#39;Mark Zuckerberg&#39;, 0, 1), (&#39;Actor -- Leading Role&#39;, &#39;Colin Firth&#39;, &#34;The King&#39;s Speech&#34;, &#39;King George VI&#39;, 1, 1), (&#39;Actor -- Leading Role&#39;, &#39;James Franco&#39;, &#39;127 Hours&#39;, &#39;Aron Ralston&#39;, 0, 1), (&#39;Actor -- Supporting Role&#39;, &#39;Christian Bale&#39;, &#39;The Fighter&#39;, &#39;Dicky Eklund&#39;, 1, 1), (&#39;Actor -- Supporting Role&#39;, &#39;John Hawkes&#39;, &#34;Winter&#39;s Bone&#34;, &#39;Teardrop&#39;, 0, 1), (&#39;Actor -- Supporting Role&#39;, &#39;Jeremy Renner&#39;, &#39;The Town&#39;, &#39;James Coughlin&#39;, 0, 1), (&#39;Actor -- Supporting Role&#39;, &#39;Mark Ruffalo&#39;, &#39;The Kids Are All Right&#39;, &#39;Paul&#39;, 0, 1), (&#39;Actor -- Supporting Role&#39;, &#39;Geoffrey Rush&#39;, &#34;The King&#39;s Speech&#34;, &#39;Lionel Logue&#39;, 0, 1), (&#39;Actress -- Leading Role&#39;, &#39;Annette Bening&#39;, &#39;The Kids Are All Right&#39;, &#39;Nic&#39;, 0, 1), (&#39;Actress -- Leading Role&#39;, &#39;Nicole Kidman&#39;, &#39;Rabbit Hole&#39;, &#39;Becca&#39;, 0, 1), (&#39;Actress -- Leading Role&#39;, &#39;Jennifer Lawrence&#39;, &#34;Winter&#39;s Bone&#34;, &#39;Ree&#39;, 0, 1), (&#39;Actress -- Leading Role&#39;, &#39;Natalie Portman&#39;, &#39;Black Swan&#39;, &#39;Nina Sayers/The Swan Queen&#39;, 1, 1), (&#39;Actress -- Leading Role&#39;, &#39;Michelle Williams&#39;, &#39;Blue Valentine&#39;, &#39;Cindy&#39;, 0, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Amy Adams&#39;, &#39;The Fighter&#39;, &#39;Charlene Fleming&#39;, 0, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Helena Bonham Carter&#39;, &#34;The King&#39;s Speech&#34;, &#39;Queen Elizabeth&#39;, 0, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Melissa Leo&#39;, &#39;The Fighter&#39;, &#39;Alice Ward&#39;, 1, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Hailee Steinfeld&#39;, &#39;True Grit&#39;, &#39;Mattie Ross&#39;, 0, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Jacki Weaver&#39;, &#39;Animal Kingdom&#39;, &#34;Janine &#39;Smurf&#39; Cody&#34;, 0, 1), (&#39;Actor -- Leading Role&#39;, &#39;Jeff Bridges&#39;, &#39;Crazy Heart&#39;, &#39;Bad Blake&#39;, 1, 2), (&#39;Actor -- Leading Role&#39;, &#39;George Clooney&#39;, &#39;Up in the Air&#39;, &#39;Ryan Bingham&#39;, 0, 2), (&#39;Actor -- Leading Role&#39;, &#39;Colin Firth&#39;, &#39;A Single Man&#39;, &#39;George&#39;, 0, 2), (&#39;Actor -- Leading Role&#39;, &#39;Morgan Freeman&#39;, &#39;Invictus&#39;, &#39;Nelson Mandela&#39;, 0, 2), (&#39;Actor -- Leading Role&#39;, &#39;Jeremy Renner&#39;, &#39;The Hurt Locker&#39;, &#39;Staff Sergeant William James&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Matt Damon&#39;, &#39;Invictus&#39;, &#39;Francois Pienaar&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Woody Harrelson&#39;, &#39;The Messenger&#39;, &#39;Captain Tony Stone&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Christopher Plummer&#39;, &#39;The Last Station&#39;, &#39;Tolstoy&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Stanley Tucci&#39;, &#39;The Lovely Bones&#39;, &#39;George Harvey&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Christoph Waltz&#39;, &#39;Inglourious Basterds&#39;, &#39;Col. Hans Landa&#39;, 1, 2), (&#39;Actress -- Leading Role&#39;, &#39;Sandra Bullock&#39;, &#39;The Blind Side&#39;, &#39;Leigh Anne Tuohy&#39;, 1, 2), (&#39;Actress -- Leading Role&#39;, &#39;Helen Mirren&#39;, &#39;The Last Station&#39;, &#39;Sofya&#39;, 0, 2), (&#39;Actress -- Leading Role&#39;, &#39;Carey Mulligan&#39;, &#39;An Education&#39;, &#39;Jenny&#39;, 0, 2), (&#39;Actress -- Leading Role&#39;, &#39;Gabourey Sidibe&#39;, &#34;Precious: Based on the Novel &#39;Push&#39; by Sapphire&#34;, &#39;Precious&#39;, 0, 2), (&#39;Actress -- Leading Role&#39;, &#39;Meryl Streep&#39;, &#39;Julie &amp; Julia&#39;, &#39;Julia Child&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#39;Penélope Cruz&#39;, &#39;Nine&#39;, &#39;Carla&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#39;Vera Farmiga&#39;, &#39;Up in the Air&#39;, &#39;Alex Goran&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#39;Maggie Gyllenhaal&#39;, &#39;Crazy Heart&#39;, &#39;Jean Craddock&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#39;Anna Kendrick&#39;, &#39;Up in the Air&#39;, &#39;Natalie Keener&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#34;Mo&#39;Nique&#34;, &#34;Precious: Based on the Novel &#39;Push&#39; by Sapphire&#34;, &#39;Mary&#39;, 1, 2), (&#39;Actor -- Leading Role&#39;, &#39;Richard Jenkins&#39;, &#39;The Visitor&#39;, &#39;Walter&#39;, 0, 3), (&#39;Actor -- Leading Role&#39;, &#39;Frank Langella&#39;, &#39;Frost/Nixon&#39;, &#39;Richard Nixon&#39;, 0, 3), (&#39;Actor -- Leading Role&#39;, &#39;Sean Penn&#39;, &#39;Milk&#39;, &#39;Harvey Milk&#39;, 1, 3), (&#39;Actor -- Leading Role&#39;, &#39;Brad Pitt&#39;, &#39;The Curious Case of Benjamin Button&#39;, &#39;Benjamin Button&#39;, 0, 3), (&#39;Actor -- Leading Role&#39;, &#39;Mickey Rourke&#39;, &#39;The Wrestler&#39;, &#39;Randy&#39;, 0, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Josh Brolin&#39;, &#39;Milk&#39;, &#39;Dan White&#39;, 0, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Robert Downey Jr.&#39;, &#39;Tropic Thunder&#39;, &#39;Kirk Lazarus&#39;, 0, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Philip Seymour Hoffman&#39;, &#39;Doubt&#39;, &#39;Father Brendan Flynn&#39;, 0, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Heath Ledger&#39;, &#39;The Dark Knight&#39;, &#39;Joker&#39;, 1, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Michael Shannon&#39;, &#39;Revolutionary Road&#39;, &#39;John Givings&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Anne Hathaway&#39;, &#39;Rachel Getting Married&#39;, &#39;Kym&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Angelina Jolie&#39;, &#39;Changeling&#39;, &#39;Christine Collins&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Melissa Leo&#39;, &#39;Frozen River&#39;, &#39;Ray Eddy&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Meryl Streep&#39;, &#39;Doubt&#39;, &#39;Sister Aloysius Beauvier&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Kate Winslet&#39;, &#39;The Reader&#39;, &#39;Hanna Schmitz&#39;, 1, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Amy Adams&#39;, &#39;Doubt&#39;, &#39;Sister James&#39;, 0, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Penélope Cruz&#39;, &#39;Vicky Cristina Barcelona&#39;, &#39;Maria Elena&#39;, 1, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Viola Davis&#39;, &#39;Doubt&#39;, &#39;Mrs. Miller&#39;, 0, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Taraji P. Henson&#39;, &#39;The Curious Case of Benjamin Button&#39;, &#39;Queenie&#39;, 0, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Marisa Tomei&#39;, &#39;The Wrestler&#39;, &#39;Cassidy&#39;, 0, 3), (&#39;Actor -- Leading Role&#39;, &#39;George Clooney&#39;, &#39;Michael Clayton&#39;, &#39;Michael Clayton&#39;, 0, 4), (&#39;Actor -- Leading Role&#39;, &#39;Daniel Day-Lewis&#39;, &#39;There Will Be Blood&#39;, &#39;Daniel Plainview&#39;, 1, 4), (&#39;Actor -- Leading Role&#39;, &#39;Johnny Depp&#39;, &#39;Sweeney Todd The Demon Barber of Fleet Street&#39;, &#39;Sweeney Todd&#39;, 0, 4), (&#39;Actor -- Leading Role&#39;, &#39;Tommy Lee Jones&#39;, &#39;In the Valley of Elah&#39;, &#39;Hank Deerfield&#39;, 0, 4), (&#39;Actor -- Leading Role&#39;, &#39;Viggo Mortensen&#39;, &#39;Eastern Promises&#39;, &#39;Nikolai&#39;, 0, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Casey Affleck&#39;, &#39;The Assassination of Jesse James by the Coward Robert Ford&#39;, &#39;Robert Ford&#39;, 0, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Javier Bardem&#39;, &#39;No Country for Old Men&#39;, &#39;Anton Chigurh&#39;, 1, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Philip Seymour Hoffman&#39;, &#34;Charlie Wilson&#39;s War&#34;, &#39;Gust Avrakotos&#39;, 0, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Hal Holbrook&#39;, &#39;Into the Wild&#39;, &#39;Ron Franz&#39;, 0, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Tom Wilkinson&#39;, &#39;Michael Clayton&#39;, &#39;Arthur Edens&#39;, 0, 4), (&#39;Actress -- Leading Role&#39;, &#39;Cate Blanchett&#39;, &#39;Elizabeth: The Golden Age&#39;, &#39;Queen Elizabeth I&#39;, 0, 4), (&#39;Actress -- Leading Role&#39;, &#39;Julie Christie&#39;, &#39;Away from Her&#39;, &#39;Fiona&#39;, 0, 4), (&#39;Actress -- Leading Role&#39;, &#39;Marion Cotillard&#39;, &#39;La Vie en Rose&#39;, &#39;Edith Piaf&#39;, 1, 4), (&#39;Actress -- Leading Role&#39;, &#39;Laura Linney&#39;, &#39;The Savages&#39;, &#39;Wendy Savage&#39;, 0, 4), (&#39;Actress -- Leading Role&#39;, &#39;Ellen Page&#39;, &#39;Juno&#39;, &#39;Juno MacGuff&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Cate Blanchett&#39;, &#34;I&#39;m Not There&#34;, &#39;Jude&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Ruby Dee&#39;, &#39;American Gangster&#39;, &#39;Mama Lucas&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Saoirse Ronan&#39;, &#39;Atonement&#39;, &#39;Briony Tallis, aged 13&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Amy Ryan&#39;, &#39;Gone Baby Gone&#39;, &#39;Helene McCready&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Tilda Swinton&#39;, &#39;Michael Clayton&#39;, &#39;Karen Crowder&#39;, 1, 4), (&#39;Actor -- Leading Role&#39;, &#39;Leonardo DiCaprio&#39;, &#39;Blood Diamond&#39;, &#39;Danny Archer&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#39;Ryan Gosling&#39;, &#39;Half Nelson&#39;, &#39;Dan Dunne&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#34;Peter O&#39;Toole&#34;, &#39;Venus&#39;, &#39;Maurice&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#39;Will Smith&#39;, &#39;The Pursuit of Happyness&#39;, &#39;Chris Gardner&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#39;Forest Whitaker&#39;, &#39;The Last King of Scotland&#39;, &#39;Idi Amin&#39;, 1, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Alan Arkin&#39;, &#39;Little Miss Sunshine&#39;, &#39;Grandpa&#39;, 1, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Jackie Earle Haley&#39;, &#39;Little Children&#39;, &#39;Ronnie J. McGorvey&#39;, 0, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Djimon Hounsou&#39;, &#39;Blood Diamond&#39;, &#39;Solomon Vandy&#39;, 0, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Eddie Murphy&#39;, &#39;Dreamgirls&#39;, &#34;James &#39;Thunder&#39; Early&#34;, 0, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Mark Wahlberg&#39;, &#39;The Departed&#39;, &#39;Dignam&#39;, 0, 5), (&#39;Actress -- Leading Role&#39;, &#39;Penélope Cruz&#39;, &#39;Volver&#39;, &#39;Raimunda&#39;, 0, 5), (&#39;Actress -- Leading Role&#39;, &#39;Judi Dench&#39;, &#39;Notes on a Scandal&#39;, &#39;Barbara Covett&#39;, 0, 5), (&#39;Actress -- Leading Role&#39;, &#39;Helen Mirren&#39;, &#39;The Queen&#39;, &#39;The Queen&#39;, 1, 5), (&#39;Actress -- Leading Role&#39;, &#39;Meryl Streep&#39;, &#39;The Devil Wears Prada&#39;, &#39;Miranda Priestly&#39;, 0, 5), (&#39;Actress -- Leading Role&#39;, &#39;Kate Winslet&#39;, &#39;Little Children&#39;, &#39;Sarah Pierce&#39;, 0, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Adriana Barraza&#39;, &#39;Babel&#39;, &#39;Amelia&#39;, 0, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Cate Blanchett&#39;, &#39;Notes on a Scandal&#39;, &#39;Sheba Hart&#39;, 0, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Abigail Breslin&#39;, &#39;Little Miss Sunshine&#39;, &#39;Olive&#39;, 0, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Jennifer Hudson&#39;, &#39;Dreamgirls&#39;, &#39;Effie White&#39;, 1, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Rinko Kikuchi&#39;, &#39;Babel&#39;, &#39;Chieko&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#39;Philip Seymour Hoffman&#39;, &#39;Capote&#39;, &#39;Truman Capote&#39;, 1, 6), (&#39;Actor -- Leading Role&#39;, &#39;Terrence Howard&#39;, &#39;Hustle &amp; Flow&#39;, &#39;DJay&#39;, 0, 6), (&#39;Actor -- Leading Role&#39;, &#39;Heath Ledger&#39;, &#39;Brokeback Mountain&#39;, &#39;Ennis Del Mar&#39;, 0, 6), (&#39;Actor -- Leading Role&#39;, &#39;Joaquin Phoenix&#39;, &#39;Walk the Line&#39;, &#39;John R. Cash&#39;, 0, 6), (&#39;Actor -- Leading Role&#39;, &#39;David Strathairn&#39;, &#39;Good Night, and Good Luck.&#39;, &#39;Edward R. Murrow&#39;, 0, 6), (&#39;Actor -- Supporting Role&#39;, &#39;George Clooney&#39;, &#39;Syriana&#39;, &#39;Bob Barnes&#39;, 1, 6), (&#39;Actor -- Supporting Role&#39;, &#39;Matt Dillon&#39;, &#39;Crash&#39;, &#39;Officer Ryan&#39;, 0, 6), (&#39;Actor -- Supporting Role&#39;, &#39;Paul Giamatti&#39;, &#39;Cinderella Man&#39;, &#39;Joe Gould&#39;, 0, 6), (&#39;Actor -- Supporting Role&#39;, &#39;Jake Gyllenhaal&#39;, &#39;Brokeback Mountain&#39;, &#39;Jack Twist&#39;, 0, 6), (&#39;Actor -- Supporting Role&#39;, &#39;William Hurt&#39;, &#39;A History of Violence&#39;, &#39;Richie Cusack&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Judi Dench&#39;, &#39;Mrs. Henderson Presents&#39;, &#39;Mrs. Laura Henderson&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Felicity Huffman&#39;, &#39;Transamerica&#39;, &#39;Bree&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Keira Knightley&#39;, &#39;Pride &amp; Prejudice&#39;, &#39;Elizabeth Bennet&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Charlize Theron&#39;, &#39;North Country&#39;, &#39;Josey Aimes&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Reese Witherspoon&#39;, &#39;Walk the Line&#39;, &#39;June Carter&#39;, 1, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Amy Adams&#39;, &#39;Junebug&#39;, &#39;Ashley&#39;, 0, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Catherine Keener&#39;, &#39;Capote&#39;, &#39;Nelle Harper Lee&#39;, 0, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Frances McDormand&#39;, &#39;North Country&#39;, &#39;Glory&#39;, 0, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Rachel Weisz&#39;, &#39;The Constant Gardener&#39;, &#39;Tessa Quayle&#39;, 1, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Michelle Williams&#39;, &#39;Brokeback Mountain&#39;, &#39;Alma&#39;, 0, 6), (&#39;Actor -- Leading Role&#39;, &#39;Don Cheadle&#39;, &#39;Hotel Rwanda&#39;, &#39;Paul Rusesabagina&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Johnny Depp&#39;, &#39;Finding Neverland&#39;, &#39;Sir James Matthew Barrie&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Leonardo DiCaprio&#39;, &#39;The Aviator&#39;, &#39;Howard Hughes&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Clint Eastwood&#39;, &#39;Million Dollar Baby&#39;, &#39;Frankie Dunn&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Jamie Foxx&#39;, &#39;Ray&#39;, &#39;Ray Charles&#39;, 1, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Alan Alda&#39;, &#39;The Aviator&#39;, &#39;Senator Ralph Owen Brewster&#39;, 0, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Thomas Haden Church&#39;, &#39;Sideways&#39;, &#39;Jack&#39;, 0, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Jamie Foxx&#39;, &#39;Collateral&#39;, &#39;Max&#39;, 0, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Morgan Freeman&#39;, &#39;Million Dollar Baby&#39;, &#39;Eddie Scrap-Iron Dupris&#39;, 1, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Clive Owen&#39;, &#39;Closer&#39;, &#39;Larry&#39;, 0, 7), (&#39;Actress -- Leading Role&#39;, &#39;Annette Bening&#39;, &#39;Being Julia&#39;, &#39;Julia Lambert&#39;, 0, 7), (&#39;Actress -- Leading Role&#39;, &#39;Catalina Sandino Moreno&#39;, &#39;Maria Full of Grace&#39;, &#39;Maria&#39;, 0, 7), (&#39;Actress -- Leading Role&#39;, &#39;Imelda Staunton&#39;, &#39;Vera Drake&#39;, &#39;Vera&#39;, 0, 7), (&#39;Actress -- Leading Role&#39;, &#39;Hilary Swank&#39;, &#39;Million Dollar Baby&#39;, &#39;Maggie Fitzgerald&#39;, 1, 7), (&#39;Actress -- Leading Role&#39;, &#39;Kate Winslet&#39;, &#39;Eternal Sunshine of the Spotless Mind&#39;, &#39;Clementine Kruczynski&#39;, 0, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Cate Blanchett&#39;, &#39;The Aviator&#39;, &#39;Katharine Hepburn&#39;, 1, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Laura Linney&#39;, &#39;Kinsey&#39;, &#39;Clara McMillen&#39;, 0, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Virginia Madsen&#39;, &#39;Sideways&#39;, &#39;Maya&#39;, 0, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Sophie Okonedo&#39;, &#39;Hotel Rwanda&#39;, &#39;Tatiana Rusesabagina&#39;, 0, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Natalie Portman&#39;, &#39;Closer&#39;, &#39;Alice&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Johnny Depp&#39;, &#39;Pirates of the Caribbean: The Curse of the Black Pearl&#39;, &#39;Jack Sparrow&#39;, 0, 8), (&#39;Actor -- Leading Role&#39;, &#39;Ben Kingsley&#39;, &#39;House of Sand and Fog&#39;, &#39;Behrani&#39;, 0, 8), (&#39;Actor -- Leading Role&#39;, &#39;Jude Law&#39;, &#39;Cold Mountain&#39;, &#39;Inman&#39;, 0, 8), (&#39;Actor -- Leading Role&#39;, &#39;Bill Murray&#39;, &#39;Lost in Translation&#39;, &#39;Bob Harris&#39;, 0, 8), (&#39;Actor -- Leading Role&#39;, &#39;Sean Penn&#39;, &#39;Mystic River&#39;, &#39;Jimmy Markum&#39;, 1, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Alec Baldwin&#39;, &#39;The Cooler&#39;, &#39;Shelly Kaplow&#39;, 0, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Benicio Del Toro&#39;, &#39;21 Grams&#39;, &#39;Jack Jordan&#39;, 0, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Djimon Hounsou&#39;, &#39;In America&#39;, &#39;Mateo&#39;, 0, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Tim Robbins&#39;, &#39;Mystic River&#39;, &#39;Dave Boyle&#39;, 1, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Ken Watanabe&#39;, &#39;The Last Samurai&#39;, &#39;Katsumoto&#39;, 0, 8), (&#39;Actress -- Leading Role&#39;, &#39;Keisha Castle-Hughes&#39;, &#39;Whale Rider&#39;, &#39;Paikea&#39;, 0, 8), (&#39;Actress -- Leading Role&#39;, &#39;Diane Keaton&#39;, &#34;Something&#39;s Gotta Give&#34;, &#39;Erica Barry&#39;, 0, 8), (&#39;Actress -- Leading Role&#39;, &#39;Samantha Morton&#39;, &#39;In America&#39;, &#39;Sarah&#39;, 0, 8), (&#39;Actress -- Leading Role&#39;, &#39;Charlize Theron&#39;, &#39;Monster&#39;, &#39;Aileen Wuornos&#39;, 1, 8), (&#39;Actress -- Leading Role&#39;, &#39;Naomi Watts&#39;, &#39;21 Grams&#39;, &#39;Cristina Peck&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Shohreh Aghdashloo&#39;, &#39;House of Sand and Fog&#39;, &#39;Nadi&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Patricia Clarkson&#39;, &#39;Pieces of April&#39;, &#39;Joy Burns&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Marcia Gay Harden&#39;, &#39;Mystic River&#39;, &#39;Celeste Boyle&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Holly Hunter&#39;, &#39;Thirteen&#39;, &#39;Melanie&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Renée Zellweger&#39;, &#39;Cold Mountain&#39;, &#39;Ruby Thewes&#39;, 1, 8), (&#39;Actor -- Leading Role&#39;, &#39;Adrien Brody&#39;, &#39;The Pianist&#39;, &#39;Wladyslaw Szpilman&#39;, 1, 9), (&#39;Actor -- Leading Role&#39;, &#39;Nicolas Cage&#39;, &#39;Adaptation&#39;, &#39;Charlie Kaufman &amp; Donald Kaufman&#39;, 0, 9), (&#39;Actor -- Leading Role&#39;, &#39;Michael Caine&#39;, &#39;The Quiet American&#39;, &#39;Thomas Fowler&#39;, 0, 9), (&#39;Actor -- Leading Role&#39;, &#39;Daniel Day-Lewis&#39;, &#39;Gangs of New York&#39;, &#34;Bill &#39;The Butcher&#39; Cutting&#34;, 0, 9), (&#39;Actor -- Leading Role&#39;, &#39;Jack Nicholson&#39;, &#39;About Schmidt&#39;, &#39;Warren Schmidt&#39;, 0, 9), (&#39;Actor -- Supporting Role&#39;, &#39;Chris Cooper&#39;, &#39;Adaptation&#39;, &#39;John Laroche&#39;, 1, 9), (&#39;Actor -- Supporting Role&#39;, &#39;Ed Harris&#39;, &#39;The Hours&#39;, &#39;Richard Brown&#39;, 0, 9), (&#39;Actor -- Supporting Role&#39;, &#39;Paul Newman&#39;, &#39;Road to Perdition&#39;, &#39;John Rooney&#39;, 0, 9), (&#39;Actor -- Supporting Role&#39;, &#39;John C. Reilly&#39;, &#39;Chicago&#39;, &#39;Amos Hart&#39;, 0, 9), (&#39;Actor -- Supporting Role&#39;, &#39;Christopher Walken&#39;, &#39;Catch Me If You Can&#39;, &#39;Frank Abagnale&#39;, 0, 9), (&#39;Actress -- Leading Role&#39;, &#39;Salma Hayek&#39;, &#39;Frida&#39;, &#39;Frida Kahlo&#39;, 0, 9), (&#39;Actress -- Leading Role&#39;, &#39;Nicole Kidman&#39;, &#39;The Hours&#39;, &#39;Virginia Woolf&#39;, 1, 9), (&#39;Actress -- Leading Role&#39;, &#39;Diane Lane&#39;, &#39;Unfaithful&#39;, &#39;Connie Sumner&#39;, 0, 9), (&#39;Actress -- Leading Role&#39;, &#39;Julianne Moore&#39;, &#39;Far from Heaven&#39;, &#39;Cathy Whitaker&#39;, 0, 9), (&#39;Actress -- Leading Role&#39;, &#39;Renée Zellweger&#39;, &#39;Chicago&#39;, &#39;Roxie Hart&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Kathy Bates&#39;, &#39;About Schmidt&#39;, &#39;Roberta Hertzel&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Julianne Moore&#39;, &#39;The Hours&#39;, &#39;Laura Brown&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Queen Latifah&#39;, &#39;Chicago&#39;, &#39;Matron Mama Morton&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Meryl Streep&#39;, &#39;Adaptation&#39;, &#39;Susan Orlean&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Catherine Zeta-Jones&#39;, &#39;Chicago&#39;, &#39;Velma Kelly&#39;, 1, 9), (&#39;Actor -- Leading Role&#39;, &#39;Russell Crowe&#39;, &#39;A Beautiful Mind&#39;, &#39;John Nash&#39;, 0, 10), (&#39;Actor -- Leading Role&#39;, &#39;Sean Penn&#39;, &#39;I Am Sam&#39;, &#39;Sam Dawson&#39;, 0, 10), (&#39;Actor -- Leading Role&#39;, &#39;Will Smith&#39;, &#39;Ali&#39;, &#39;Muhammad Ali&#39;, 0, 10), (&#39;Actor -- Leading Role&#39;, &#39;Denzel Washington&#39;, &#39;Training Day&#39;, &#39;Alonzo&#39;, 1, 10), (&#39;Actor -- Leading Role&#39;, &#39;Tom Wilkinson&#39;, &#39;In the Bedroom&#39;, &#39;Matt Fowler&#39;, 0, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Jim Broadbent&#39;, &#39;Iris&#39;, &#39;John Bayley&#39;, 1, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Ethan Hawke&#39;, &#39;Training Day&#39;, &#39;Jake&#39;, 0, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Ben Kingsley&#39;, &#39;Sexy Beast&#39;, &#39;Don Logan&#39;, 0, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Ian McKellen&#39;, &#39;The Lord of the Rings: The Fellowship of the Ring&#39;, &#39;Gandalf&#39;, 0, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Jon Voight&#39;, &#39;Ali&#39;, &#39;Howard Cosell&#39;, 0, 10), (&#39;Actress -- Leading Role&#39;, &#39;Halle Berry&#39;, &#34;Monster&#39;s Ball&#34;, &#39;Leticia Musgrove&#39;, 1, 10), (&#39;Actress -- Leading Role&#39;, &#39;Judi Dench&#39;, &#39;Iris&#39;, &#39;Iris Murdoch&#39;, 0, 10), (&#39;Actress -- Leading Role&#39;, &#39;Nicole Kidman&#39;, &#39;Moulin Rouge&#39;, &#39;Satine&#39;, 0, 10), (&#39;Actress -- Leading Role&#39;, &#39;Sissy Spacek&#39;, &#39;In the Bedroom&#39;, &#39;Ruth Fowler&#39;, 0, 10), (&#39;Actress -- Leading Role&#39;, &#39;Renée Zellweger&#39;, &#34;Bridget Jones&#39;s Diary&#34;, &#39;Bridget Jones&#39;, 0, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Jennifer Connelly&#39;, &#39;A Beautiful Mind&#39;, &#39;Alicia Nash&#39;, 1, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Helen Mirren&#39;, &#39;Gosford Park&#39;, &#39;Mrs. Wilson&#39;, 0, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Maggie Smith&#39;, &#39;Gosford Park&#39;, &#39;Constance, Countess of Trentham&#39;, 0, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Marisa Tomei&#39;, &#39;In the Bedroom&#39;, &#39;Natalie Strout&#39;, 0, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Kate Winslet&#39;, &#39;Iris&#39;, &#39;Young Iris Murdoch&#39;, 0, 10)]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">CREATE TABLE nominations2(</span>
+<span class="s1">id integer PRIMARY KEY,</span>
+<span class="s1">category text,</span>
+<span class="s1">nominee text,</span>
+<span class="s1">movie text,</span>
+<span class="s1">character text,</span>
+<span class="s1">won integer,</span>
+<span class="s1">ceremony_id integer,</span>
+<span class="s1">FOREIGN KEY(ceremony_id) REFERENCES ceremonies (id)</span>
+<span class="s1">);&#39;&#39;&#39;</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[84]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127cd180&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">insert_q2</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO nominations2 (category, nominee, movie, character, won, ceremony_id) VALUES (?, ?, ?, ?, ?, ?)&quot;</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">insert_q2</span><span class="p">,</span> <span class="n">nomination2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[86]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127abab0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM nominations2 LIMIT 5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[87]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(1, &#39;Actor -- Leading Role&#39;, &#39;Javier Bardem&#39;, &#39;Biutiful&#39;, &#39;Uxbal&#39;, 0, 1),
+ (2,
+  &#39;Actor -- Leading Role&#39;,
+  &#39;Jeff Bridges&#39;,
+  &#39;True Grit&#39;,
+  &#39;Rooster Cogburn&#39;,
+  0,
+  1),
+ (3,
+  &#39;Actor -- Leading Role&#39;,
+  &#39;Jesse Eisenberg&#39;,
+  &#39;The Social Network&#39;,
+  &#39;Mark Zuckerberg&#39;,
+  0,
+  1),
+ (4,
+  &#39;Actor -- Leading Role&#39;,
+  &#39;Colin Firth&#39;,
+  &#34;The King&#39;s Speech&#34;,
+  &#39;King George VI&#39;,
+  1,
+  1),
+ (5,
+  &#39;Actor -- Leading Role&#39;,
+  &#39;James Franco&#39;,
+  &#39;127 Hours&#39;,
+  &#39;Aron Ralston&#39;,
+  0,
+  1)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q3</span> <span class="o">=</span> <span class="s2">&quot;DROP TABLE nominations&quot;</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">q3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[88]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127cd030&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q4</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE nominations2 RENAME TO nominations&quot;</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">q4</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[90]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127cd570&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[91]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#create table movies</span>
+<span class="n">create_q1</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">CREATE TABLE movies (</span>
+<span class="s1">id integer PRIMARY KEY,</span>
+<span class="s1">movie text);</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_q1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[91]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127cd420&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[92]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#create table actors</span>
+<span class="n">create_q2</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">CREATE TABLE actors (</span>
+<span class="s1">id integer PRIMARY KEY,</span>
+<span class="s1">actor text);</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_q2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[92]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127cd5e0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#create table movie_actor</span>
+<span class="n">create_q3</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">CREATE TABLE movie_actor (</span>
+<span class="s1">id integer PRIMARY KEY,</span>
+<span class="s1">movie_id integer REFERENCES movies(id),</span>
+<span class="s1">actor_id integer REFERENCES actors(id));</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_q3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[94]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1127cd7a0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://33phoebe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
