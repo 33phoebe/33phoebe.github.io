@@ -5231,7 +5231,7 @@ AAAAAElFTkSuQmCC
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="history predictive_analysis"></category></entry><entry><title>NYC School exploratory analysis: Which schools have high/low SAT score?</title><link href="https://33phoebe.github.io/sat.html" rel="alternate"></link><published>2018-03-05T12:00:00-05:00</published><updated>2018-03-05T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-03-05:/sat.html</id><summary type="html">
+</content><category term="history"></category><category term="predictive analysis"></category></entry><entry><title>NYC School exploratory analysis: Which schools have high/low SAT score?</title><link href="https://33phoebe.github.io/sat.html" rel="alternate"></link><published>2018-03-05T12:00:00-05:00</published><updated>2018-03-05T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-03-05:/sat.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -13310,7 +13310,7 @@ jCkPwzAMIzKmPAzDMIzI/P8ODPXi+cu/rQAAAABJRU5ErkJggg==
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="academia"></category></entry><entry><title>Study CIA World Factbook with sqlite3</title><link href="https://33phoebe.github.io/factbook.html" rel="alternate"></link><published>2018-03-03T12:00:00-05:00</published><updated>2018-03-03T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-03-03:/factbook.html</id><summary type="html">
+</content><category term="academia"></category><category term="exploratory analysis"></category></entry><entry><title>Study CIA World Factbook with sqlite3</title><link href="https://33phoebe.github.io/factbook.html" rel="alternate"></link><published>2018-03-03T12:00:00-05:00</published><updated>2018-03-03T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-03-03:/factbook.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -15631,7 +15631,7 @@ TkSuQmCC
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="world"></category></entry><entry><title>S&amp;P 500 stock closing price prediction with Linear Regression Model</title><link href="https://33phoebe.github.io/stock.html" rel="alternate"></link><published>2018-03-02T12:00:00-05:00</published><updated>2018-03-02T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-03-02:/stock.html</id><summary type="html">
+</content><category term="geography"></category><category term="SQL"></category></entry><entry><title>S&amp;P 500 stock closing price prediction with Linear Regression Model</title><link href="https://33phoebe.github.io/stock.html" rel="alternate"></link><published>2018-03-02T12:00:00-05:00</published><updated>2018-03-02T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-03-02:/stock.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -17012,7 +17012,7 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="finance"></category></entry><entry><title>Loan Club Data Predictive Analysis with data cleansing</title><link href="https://33phoebe.github.io/loan-club.html" rel="alternate"></link><published>2018-03-01T12:00:00-05:00</published><updated>2018-03-01T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-03-01:/loan-club.html</id><summary type="html">
+</content><category term="finance"></category><category term="predictive analysis"></category></entry><entry><title>Loan Club Data Predictive Analysis with data cleansing</title><link href="https://33phoebe.github.io/loan-club.html" rel="alternate"></link><published>2018-03-01T12:00:00-05:00</published><updated>2018-03-01T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-03-01:/loan-club.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -19506,7 +19506,7 @@ memory usage: 6.8 MB
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="loan predictive_analysis"></category></entry><entry><title>Starwar Movies-data manipulation practice</title><link href="https://33phoebe.github.io/star-war.html" rel="alternate"></link><published>2018-02-26T12:00:00-05:00</published><updated>2018-02-26T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-02-26:/star-war.html</id><summary type="html">
+</content><category term="finance"></category><category term="predictive analysis"></category></entry><entry><title>Starwar Movies-data manipulation practice</title><link href="https://33phoebe.github.io/star-war.html" rel="alternate"></link><published>2018-02-26T12:00:00-05:00</published><updated>2018-02-26T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-02-26:/star-war.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -22355,7 +22355,7 @@ ImOxqhBpAAAAAElFTkSuQmCC
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Movie"></category></entry><entry><title>Jeopardy Exploratory Analysis-Any correlation between question value and wording?</title><link href="https://33phoebe.github.io/jeopardy.html" rel="alternate"></link><published>2018-02-23T12:00:00-05:00</published><updated>2018-02-23T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-02-23:/jeopardy.html</id><summary type="html">
+</content><category term="Movie"></category><category term="exploratory analysis"></category></entry><entry><title>Jeopardy Exploratory Analysis-Any correlation between question value and wording?</title><link href="https://33phoebe.github.io/jeopardy.html" rel="alternate"></link><published>2018-02-23T12:00:00-05:00</published><updated>2018-02-23T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-02-23:/jeopardy.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -24191,7 +24191,7 @@ a
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="show exploratory_analysis"></category></entry><entry><title>How's Sex Ratio Changed across 3 Categories of Major 1970-2010?</title><link href="https://33phoebe.github.io/ratio-category.html" rel="alternate"></link><published>2018-02-22T12:00:00-05:00</published><updated>2018-02-22T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-02-22:/ratio-category.html</id><summary type="html">
+</content><category term="show"></category><category term="exploratory analysis"></category></entry><entry><title>Change in Percentage of Women Awarded Bachelor's Degrees by Major 1970-2011</title><link href="https://33phoebe.github.io/ratio-category.html" rel="alternate"></link><published>2018-02-22T12:00:00-05:00</published><updated>2018-02-22T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-02-22:/ratio-category.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -33354,7 +33354,7 @@ Although much better, decision tree still has a relatively high rmse. Will use r
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="predictive_analysis"></category></entry><entry><title>Explore Oscar Nominees Data with sqlite3 and pandas</title><link href="https://33phoebe.github.io/oscar.html" rel="alternate"></link><published>2018-02-13T12:00:00-05:00</published><updated>2018-02-13T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-02-13:/oscar.html</id><summary type="html">
+</content><category term="predictive analysis"></category></entry><entry><title>Explore Oscar Nominees Data with sqlite3 and pandas</title><link href="https://33phoebe.github.io/oscar.html" rel="alternate"></link><published>2018-02-13T12:00:00-05:00</published><updated>2018-02-13T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-02-13:/oscar.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -35861,7 +35861,7 @@ Name: Additional Info, Length: 200, dtype: object
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="show"></category></entry><entry><title>Recent Graduates Employment Analysis with Descriptive Stats and plots</title><link href="https://33phoebe.github.io/employment.html" rel="alternate"></link><published>2018-01-22T12:00:00-05:00</published><updated>2018-01-22T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-01-22:/employment.html</id><summary type="html">
+</content><category term="show"></category><category term="SQL"></category></entry><entry><title>Recent Graduates Employment Analysis with Descriptive Stats and plots</title><link href="https://33phoebe.github.io/employment.html" rel="alternate"></link><published>2018-01-22T12:00:00-05:00</published><updated>2018-01-22T12:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-01-22:/employment.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -43950,7 +43950,7 @@ FeWpVTMzM7OK8kDOzMzMrKI8kDMzMzOrKA/kzMzMzCrKAzkzMzOzivJAzszMzKyiPJAzMzMzqygP
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="descriptive_analysis"></category></entry><entry><title>Airport-Airline mapping with Basemap</title><link href="https://33phoebe.github.io/auto-price.html" rel="alternate"></link><published>2018-01-03T20:00:00-05:00</published><updated>2018-01-03T20:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-01-03:/auto-price.html</id><summary type="html">
+</content><category term="descriptive analysis"></category></entry><entry><title>Airport-Airline mapping with Basemap</title><link href="https://33phoebe.github.io/auto-price.html" rel="alternate"></link><published>2018-01-03T20:00:00-05:00</published><updated>2018-01-03T20:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2018-01-03:/auto-price.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -49585,7 +49585,7 @@ grSIiIiIiBe0tENERERExAsK0iIiIiIiXlCQFhERERHxgoK0iIiIiIgXFKRFRERERLygIC0iIiIi
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="auto predictive_analysis data_cleaning"></category></entry><entry><title>Airport-Airline mapping with Basemap</title><link href="https://33phoebe.github.io/Airline.html" rel="alternate"></link><published>2017-12-19T20:00:00-05:00</published><updated>2017-12-19T20:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2017-12-19:/Airline.html</id><summary type="html">
+</content><category term="auto"></category><category term="predictive analysis"></category><category term="data cleaning"></category></entry><entry><title>Airport-Airline mapping with Basemap</title><link href="https://33phoebe.github.io/Airline.html" rel="alternate"></link><published>2017-12-19T20:00:00-05:00</published><updated>2017-12-19T20:00:00-05:00</updated><author><name>Phoebe Zheng</name></author><id>tag:33phoebe.github.io,2017-12-19:/Airline.html</id><summary type="html">
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
@@ -57654,4 +57654,4 @@ ERERkYyx0CIiIiIiIpIxFlpEREREREQyxkKLiIiIiIhIxv4f5uBMBIywJQYAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="airline basemap"></category></entry></feed>
+</content><category term="airline"></category><category term="basemap"></category></entry></feed>

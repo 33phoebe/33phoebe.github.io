@@ -21,17 +21,17 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://33phoebe.github.io/oscar.html">Explore Oscar Nominees Data with sqlite3 and pandas</a></h1>
+                    <h1 class="entry-title"><a href="https://33phoebe.github.io/jeopardy.html">Jeopardy Exploratory Analysis-Any correlation between question value and wording?</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2018-02-13T12:00:00-05:00">
-                Published: Tue 13 February 2018
+        <abbr class="published" title="2018-02-23T12:00:00-05:00">
+                Published: Fri 23 February 2018
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="https://33phoebe.github.io/author/phoebe-zheng.html">Phoebe Zheng</a>
         </address>
 <p>In <a href="https://33phoebe.github.io/category/posts.html">posts</a>.</p>
-<p>tags: <a href="https://33phoebe.github.io/tag/show.html">show</a> </p>
+<p>tags: <a href="https://33phoebe.github.io/tag/show.html">show</a> <a href="https://33phoebe.github.io/tag/exploratory-analysis.html">exploratory analysis</a> </p>
 </footer><!-- /.post-info --><style type="text/css">/*!
 *
 * IPython notebook
@@ -1006,11 +1006,10 @@ h6:hover .anchor-link {
 </style>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">sqlite3</span>
 </pre></div>
 
 </div>
@@ -1020,12 +1019,12 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/academy_awards.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">jeopardy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/JEOPARDY.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeopardy</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeopardy</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1042,27 +1041,22 @@ h6:hover .anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>          Year               Category          Nominee  \
-0  2010 (83rd)  Actor -- Leading Role    Javier Bardem   
-1  2010 (83rd)  Actor -- Leading Role     Jeff Bridges   
-2  2010 (83rd)  Actor -- Leading Role  Jesse Eisenberg   
-3  2010 (83rd)  Actor -- Leading Role      Colin Firth   
-4  2010 (83rd)  Actor -- Leading Role     James Franco   
+<pre>   Show Number    Air Date      Round                         Category  Value  \
+0         4680  2004-12-31  Jeopardy!                          HISTORY   $200   
+1         4680  2004-12-31  Jeopardy!  ESPN&#39;s TOP 10 ALL-TIME ATHLETES   $200   
+2         4680  2004-12-31  Jeopardy!      EVERYBODY TALKS ABOUT IT...   $200   
+3         4680  2004-12-31  Jeopardy!                 THE COMPANY LINE   $200   
+4         4680  2004-12-31  Jeopardy!              EPITAPHS &amp; TRIBUTES   $200   
 
-                          Additional Info Won? Unnamed: 5 Unnamed: 6  \
-0                      Biutiful {&#39;Uxbal&#39;}   NO        NaN        NaN   
-1           True Grit {&#39;Rooster Cogburn&#39;}   NO        NaN        NaN   
-2  The Social Network {&#39;Mark Zuckerberg&#39;}   NO        NaN        NaN   
-3    The King&#39;s Speech {&#39;King George VI&#39;}  YES        NaN        NaN   
-4              127 Hours {&#39;Aron Ralston&#39;}   NO        NaN        NaN   
-
-  Unnamed: 7 Unnamed: 8 Unnamed: 9 Unnamed: 10  
-0        NaN        NaN        NaN         NaN  
-1        NaN        NaN        NaN         NaN  
-2        NaN        NaN        NaN         NaN  
-3        NaN        NaN        NaN         NaN  
-4        NaN        NaN        NaN         NaN  
-(10137, 11)
+                                            Question      Answer  
+0  For the last 8 years of his life, Galileo was ...  Copernicus  
+1  No. 2: 1912 Olympian; football star at Carlisl...  Jim Thorpe  
+2  The city of Yuma in this state has a record av...     Arizona  
+3  In 1963, live on &#34;The Art Linkletter Show&#34;, th...  McDonald&#39;s  
+4  Signer of the Dec. of Indep., framer of the Co...  John Adams  
+Index([&#39;Show Number&#39;, &#39; Air Date&#39;, &#39; Round&#39;, &#39; Category&#39;, &#39; Value&#39;,
+       &#39; Question&#39;, &#39; Answer&#39;],
+      dtype=&#39;object&#39;)
 </pre>
 </div>
 </div>
@@ -1075,19 +1069,20 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>this dataset is a edited version of kaggle's academy-awards dataset, include all the nominees and winners in Oscar history 1927-2010</p>
+<p>this dataset contains 216,930 Jeopardy questions, answers and other data across 22 years of air time. Questions were obtained by crawling www.j-archive.com done by redditor <a href="https://www.reddit.com/r/datasets/comments/1uyd0t/200000_jeopardy_questions_in_a_json_file/">trexmatt</a></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unnamed_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">4</span><span class="p">:]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unnamed_cols</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#remove the space in column names:</span>
+<span class="n">jeopardy</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Show Number&quot;</span><span class="p">,</span> <span class="s2">&quot;Air Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Round&quot;</span><span class="p">,</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Question&quot;</span><span class="p">,</span> <span class="s2">&quot;Answer&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeopardy</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    
 </pre></div>
 
 </div>
@@ -1104,45 +1099,9 @@ h6:hover .anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>NO                                                                                                                                                                                              7168
-YES                                                                                                                                                                                             2955
- water and avalanches with familiar operators inspired by image compositing and painting operations. [Digital Imaging Technology]&#34;                                                                 1
-000 agents were controlled in several scenes. [Digital Imaging Technology]&#34;                                                                                                                        1
- as well as 3D prosthetic appliances ranging in size from small wounds to entire torsos. They utilize self-adhesive material that features an unprecedented combination of tissue-thin edges       1
- the Academy presents a Special Award to that master of fun                                                                                                                                        1
- complex cloth could be achieved efficiently and robustly. Their work provided the conceptual foundation for many cloth simulation systems in use today. [Digital Imaging Technology]&#34;             1
- direct radiator style motion picture loudspeaker systems. The work of John M. Eargle                                                                                                              1
- for his contributions to the development of motion pictures as entertainment.&#34;                                                                                                                    1
- economic and realistic filming of action sequences that may involve principal actors and dialogue. [Stage Operations]&#34;                                                                            1
- this premier reference manual has had a significant impact on decades of motion picture photography around the world.&#34;                                                                            1
- and Tails&#34; numbers from Top Hat [came in 2nd]&#34;                                                                                                                                                    1
- which significantly reduces the need for painstaking                                                                                                                                              1
- deforming objects. [Digital Imaging Technology]&#34;                                                                                                                                                  1
- the &#34;Caricature&#34; system provides a degree of subtlety and refinement not possible with other systems. [Special Photographic]&#34;                                                                     1
- more conventional fog units. [Stage Operations]&#34;                                                                                                                                                  1
-Name: Won?, dtype: int64
-*                                                                                                               7
- discoverer of stars                                                                                            1
- resilience                                                                                                     1
- error-prone measurements on sets. [Digital Imaging Technology]&#34;                                                1
- D.B. &#34;Don&#34; Keele and Mark E. Engebretson has resulted in the over 20-year dominance of constant-directivity    1
-Name: Unnamed: 5, dtype: int64
-*                                                                   9
- direct radiator bass style cinema loudspeaker systems. [Sound]&#34;    1
- flexibility and water resistance                                   1
- sympathetic                                                        1
-Name: Unnamed: 6, dtype: int64
-*                                                     1
- while requiring no dangerous solvents. [Systems]&#34;    1
- kindly                                               1
-Name: Unnamed: 7, dtype: int64
- understanding comedy genius - Mack Sennett.&#34;&#34;    1
-*                                                 1
-Name: Unnamed: 8, dtype: int64
-*    1
-Name: Unnamed: 9, dtype: int64
-*    1
-Name: Unnamed: 10, dtype: int64
+<pre>Index([&#39;Show Number&#39;, &#39;Air Date&#39;, &#39;Round&#39;, &#39;Category&#39;, &#39;Value&#39;, &#39;Question&#39;,
+       &#39;Answer&#39;],
+      dtype=&#39;object&#39;)
 </pre>
 </div>
 </div>
@@ -1153,14 +1112,154 @@ Name: Unnamed: 10, dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#remove additional info from var &quot;Year&quot; and convert it to integer</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#function to remove punctuation, turn words into lowercase</span>
+<span class="kn">from</span> <span class="nn">string</span> <span class="k">import</span> <span class="n">punctuation</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">punctuation</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cleanstr</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">punctuation</span><span class="p">:</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="c1">#assign cleaned columns back to jeopardy</span>
+<span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;clean_question&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;Question&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">cleanstr</span><span class="p">)</span>
+<span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;clean_answer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;Answer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">cleanstr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeopardy</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>!&#34;#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~
+   Show Number    Air Date      Round                         Category Value  \
+0         4680  2004-12-31  Jeopardy!                          HISTORY  $200   
+1         4680  2004-12-31  Jeopardy!  ESPN&#39;s TOP 10 ALL-TIME ATHLETES  $200   
+2         4680  2004-12-31  Jeopardy!      EVERYBODY TALKS ABOUT IT...  $200   
+3         4680  2004-12-31  Jeopardy!                 THE COMPANY LINE  $200   
+4         4680  2004-12-31  Jeopardy!              EPITAPHS &amp; TRIBUTES  $200   
+
+                                            Question      Answer  \
+0  For the last 8 years of his life, Galileo was ...  Copernicus   
+1  No. 2: 1912 Olympian; football star at Carlisl...  Jim Thorpe   
+2  The city of Yuma in this state has a record av...     Arizona   
+3  In 1963, live on &#34;The Art Linkletter Show&#34;, th...  McDonald&#39;s   
+4  Signer of the Dec. of Indep., framer of the Co...  John Adams   
+
+                                      clean_question clean_answer  
+0  for the last 8 years of his life galileo was u...   copernicus  
+1  no 2 1912 olympian football star at carlisle i...   jim thorpe  
+2  the city of yuma in this state has a record av...      arizona  
+3  in 1963 live on the art linkletter show this c...    mcdonalds  
+4  signer of the dec of indep framer of the const...   john adams  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#function to convert string to int for value</span>
+<span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">cleanstr</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">value</span>
+<span class="c1">#assign back to the df</span>
+<span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;clean_value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert</span><span class="p">)</span>
+<span class="c1">#convert air date to datetime format</span>
+<span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;Air Date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;Air Date&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeopardy</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>   Show Number   Air Date      Round                         Category Value  \
+0         4680 2004-12-31  Jeopardy!                          HISTORY  $200   
+1         4680 2004-12-31  Jeopardy!  ESPN&#39;s TOP 10 ALL-TIME ATHLETES  $200   
+2         4680 2004-12-31  Jeopardy!      EVERYBODY TALKS ABOUT IT...  $200   
+3         4680 2004-12-31  Jeopardy!                 THE COMPANY LINE  $200   
+4         4680 2004-12-31  Jeopardy!              EPITAPHS &amp; TRIBUTES  $200   
+
+                                            Question      Answer  \
+0  For the last 8 years of his life, Galileo was ...  Copernicus   
+1  No. 2: 1912 Olympian; football star at Carlisl...  Jim Thorpe   
+2  The city of Yuma in this state has a record av...     Arizona   
+3  In 1963, live on &#34;The Art Linkletter Show&#34;, th...  McDonald&#39;s   
+4  Signer of the Dec. of Indep., framer of the Co...  John Adams   
+
+                                      clean_question clean_answer  clean_value  
+0  for the last 8 years of his life galileo was u...   copernicus          200  
+1  no 2 1912 olympian football star at carlisle i...   jim thorpe          200  
+2  the city of yuma in this state has a record av...      arizona          200  
+3  in 1963 live on the art linkletter show this c...    mcdonalds          200  
+4  signer of the dec of indep framer of the const...   john adams          200  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;Air Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>datetime64[ns]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -1170,7 +1269,24 @@ Name: Unnamed: 10, dtype: int64
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#function to find match between answers and question</span>
+<span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">split_answer</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;clean_answer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="n">split_question</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;clean_question&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="n">match_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="s2">&quot;the&quot;</span> <span class="ow">in</span> <span class="n">split_answer</span><span class="p">:</span>
+        <span class="n">split_answer</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;the&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_answer</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">split_answer</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">split_question</span><span class="p">:</span>
+                <span class="n">match_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">match_count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">split_answer</span><span class="p">)</span>
+<span class="c1">#apply function and assign result to answer_in_question column:</span>
+<span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;answer_in_question&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jeopardy</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeopardy</span><span class="p">[</span><span class="s2">&quot;answer_in_question&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeopardy</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -1187,26 +1303,34 @@ Name: Unnamed: 10, dtype: int64
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>   Year               Category          Nominee  \
-0  2010  Actor -- Leading Role    Javier Bardem   
-1  2010  Actor -- Leading Role     Jeff Bridges   
-2  2010  Actor -- Leading Role  Jesse Eisenberg   
-3  2010  Actor -- Leading Role      Colin Firth   
-4  2010  Actor -- Leading Role     James Franco   
+<pre>0.05932504431848426
+   Show Number   Air Date      Round                         Category Value  \
+0         4680 2004-12-31  Jeopardy!                          HISTORY  $200   
+1         4680 2004-12-31  Jeopardy!  ESPN&#39;s TOP 10 ALL-TIME ATHLETES  $200   
+2         4680 2004-12-31  Jeopardy!      EVERYBODY TALKS ABOUT IT...  $200   
+3         4680 2004-12-31  Jeopardy!                 THE COMPANY LINE  $200   
+4         4680 2004-12-31  Jeopardy!              EPITAPHS &amp; TRIBUTES  $200   
 
-                          Additional Info Won? Unnamed: 5 Unnamed: 6  \
-0                      Biutiful {&#39;Uxbal&#39;}   NO        NaN        NaN   
-1           True Grit {&#39;Rooster Cogburn&#39;}   NO        NaN        NaN   
-2  The Social Network {&#39;Mark Zuckerberg&#39;}   NO        NaN        NaN   
-3    The King&#39;s Speech {&#39;King George VI&#39;}  YES        NaN        NaN   
-4              127 Hours {&#39;Aron Ralston&#39;}   NO        NaN        NaN   
+                                            Question      Answer  \
+0  For the last 8 years of his life, Galileo was ...  Copernicus   
+1  No. 2: 1912 Olympian; football star at Carlisl...  Jim Thorpe   
+2  The city of Yuma in this state has a record av...     Arizona   
+3  In 1963, live on &#34;The Art Linkletter Show&#34;, th...  McDonald&#39;s   
+4  Signer of the Dec. of Indep., framer of the Co...  John Adams   
 
-  Unnamed: 7 Unnamed: 8 Unnamed: 9 Unnamed: 10  
-0        NaN        NaN        NaN         NaN  
-1        NaN        NaN        NaN         NaN  
-2        NaN        NaN        NaN         NaN  
-3        NaN        NaN        NaN         NaN  
-4        NaN        NaN        NaN         NaN  
+                                      clean_question clean_answer  \
+0  for the last 8 years of his life galileo was u...   copernicus   
+1  no 2 1912 olympian football star at carlisle i...   jim thorpe   
+2  the city of yuma in this state has a record av...      arizona   
+3  in 1963 live on the art linkletter show this c...    mcdonalds   
+4  signer of the dec of indep framer of the const...   john adams   
+
+   clean_value  answer_in_question  
+0          200                 0.0  
+1          200                 0.0  
+2          200                 0.0  
+3          200                 0.0  
+4          200                 0.0  
 </pre>
 </div>
 </div>
@@ -1215,336 +1339,23 @@ Name: Unnamed: 10, dtype: int64
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#filter out the awards after 2000</span>
-<span class="n">lt2000</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="p">]</span>
-<span class="n">lt2000</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There is a little less than 6% of the chance we can hear the answer in the question, implying that study would be necessary to score high in jeopardy</p>
 
 </div>
 </div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[25]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(1294, 11)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#filter out the categories that are not within the actor-related categories</span>
-<span class="n">award_categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Actress -- Supporting Role&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor -- Leading Role&quot;</span><span class="p">,</span> <span class="s2">&quot;Actress -- Leading Role&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor -- Supporting Role&quot;</span><span class="p">]</span>
-<span class="n">nominations</span> <span class="o">=</span> <span class="n">lt2000</span><span class="p">[</span><span class="n">lt2000</span><span class="p">[</span><span class="s2">&quot;Category&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">award_categories</span><span class="p">)]</span>
-<span class="n">nominations</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[28]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(200, 11)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">yes_no</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;YES&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;NO&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
-<span class="n">nominations</span><span class="p">[</span><span class="s2">&quot;Won&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nominations</span><span class="p">[</span><span class="s2">&quot;Won?&quot;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Applications/anaconda3/lib/python3.6/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nominations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[37]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Year</th>
-      <th>Category</th>
-      <th>Nominee</th>
-      <th>Additional Info</th>
-      <th>Won?</th>
-      <th>Unnamed: 5</th>
-      <th>Unnamed: 6</th>
-      <th>Unnamed: 7</th>
-      <th>Unnamed: 8</th>
-      <th>Unnamed: 9</th>
-      <th>Unnamed: 10</th>
-      <th>Won</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>Javier Bardem</td>
-      <td>Biutiful {'Uxbal'}</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>Jeff Bridges</td>
-      <td>True Grit {'Rooster Cogburn'}</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>Jesse Eisenberg</td>
-      <td>The Social Network {'Mark Zuckerberg'}</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>Colin Firth</td>
-      <td>The King's Speech {'King George VI'}</td>
-      <td>1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>James Franco</td>
-      <td>127 Hours {'Aron Ralston'}</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unnamed_cols</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[39]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Won?&#39;,
- &#39;Unnamed: 5&#39;,
- &#39;Unnamed: 6&#39;,
- &#39;Unnamed: 7&#39;,
- &#39;Unnamed: 8&#39;,
- &#39;Unnamed: 9&#39;,
- &#39;Unnamed: 10&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_nominations</span> <span class="o">=</span> <span class="n">nominations</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">unnamed_cols</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">final_nominations</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[43]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(200, 5)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">addinfo1</span> <span class="o">=</span> <span class="n">final_nominations</span><span class="p">[</span><span class="s2">&quot;Additional Info&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;&#39;}&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">addinfo1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">jeo</span> <span class="o">=</span> <span class="n">jeopardy</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Air Date&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeo</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeo</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1561,68 +1372,116 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0                                        Biutiful {&#39;Uxbal
-1                             True Grit {&#39;Rooster Cogburn
-2                    The Social Network {&#39;Mark Zuckerberg
-3                      The King&#39;s Speech {&#39;King George VI
-4                                127 Hours {&#39;Aron Ralston
-5                              The Fighter {&#39;Dicky Eklund
-6                                Winter&#39;s Bone {&#39;Teardrop
-7                               The Town {&#39;James Coughlin
-8                           The Kids Are All Right {&#39;Paul
-9                        The King&#39;s Speech {&#39;Lionel Logue
-10                           The Kids Are All Right {&#39;Nic
-11                                    Rabbit Hole {&#39;Becca
-12                                    Winter&#39;s Bone {&#39;Ree
-13                Black Swan {&#39;Nina Sayers/The Swan Queen
-14                                 Blue Valentine {&#39;Cindy
-15                         The Fighter {&#39;Charlene Fleming
-16                    The King&#39;s Speech {&#39;Queen Elizabeth
-17                               The Fighter {&#39;Alice Ward
-18                                True Grit {&#39;Mattie Ross
-19                   Animal Kingdom {&#39;Janine &#39;Smurf&#39; Cody
-135                               Crazy Heart {&#39;Bad Blake
-136                          Up in the Air {&#39;Ryan Bingham
-137                                 A Single Man {&#39;George
-138                             Invictus {&#39;Nelson Mandela
-139        The Hurt Locker {&#39;Staff Sergeant William James
-140                           Invictus {&#39;Francois Pienaar
-141                    The Messenger {&#39;Captain Tony Stone
-142                            The Last Station {&#39;Tolstoy
-143                      The Lovely Bones {&#39;George Harvey
-144                Inglourious Basterds {&#39;Col. Hans Landa
-                              ...                        
-1040                                  Frida {&#39;Frida Kahlo
-1041                           The Hours {&#39;Virginia Woolf
-1042                           Unfaithful {&#39;Connie Sumner
-1043                     Far from Heaven {&#39;Cathy Whitaker
-1044                                 Chicago {&#39;Roxie Hart
-1045                      About Schmidt {&#39;Roberta Hertzel
-1046                              The Hours {&#39;Laura Brown
-1047                         Chicago {&#39;Matron Mama Morton
-1048                            Adaptation {&#39;Susan Orlean
-1049                                Chicago {&#39;Velma Kelly
-1157                         A Beautiful Mind {&#39;John Nash
-1158                                I Am Sam {&#39;Sam Dawson
-1159                                   Ali {&#39;Muhammad Ali
-1160                                Training Day {&#39;Alonzo
-1161                         In the Bedroom {&#39;Matt Fowler
-1162                                   Iris {&#39;John Bayley
-1163                                  Training Day {&#39;Jake
-1164                               Sexy Beast {&#39;Don Logan
-1165    The Lord of the Rings: The Fellowship of the R...
-1166                                  Ali {&#39;Howard Cosell
-1167                    Monster&#39;s Ball {&#39;Leticia Musgrove
-1168                                  Iris {&#39;Iris Murdoch
-1169                                Moulin Rouge {&#39;Satine
-1170                         In the Bedroom {&#39;Ruth Fowler
-1171                Bridget Jones&#39;s Diary {&#39;Bridget Jones
-1172                       A Beautiful Mind {&#39;Alicia Nash
-1173                           Gosford Park {&#39;Mrs. Wilson
-1174       Gosford Park {&#39;Constance, Countess of Trentham
-1175                      In the Bedroom {&#39;Natalie Strout
-1176                            Iris {&#39;Young Iris Murdoch
-Name: Additional Info, Length: 200, dtype: object
+<pre>       Show Number   Air Date             Round            Category   Value  \
+84523            1 1984-09-10         Jeopardy!      LAKES &amp; RIVERS    $100   
+84565            1 1984-09-10  Double Jeopardy!           THE BIBLE   $1000   
+84566            1 1984-09-10  Double Jeopardy!            &#39;50&#39;S TV   $1000   
+84567            1 1984-09-10  Double Jeopardy!  NATIONAL LANDMARKS   $1000   
+84568            1 1984-09-10  Double Jeopardy!           NOTORIOUS   $1000   
+84569            1 1984-09-10  Double Jeopardy!      4-LETTER WORDS   $1000   
+84570            1 1984-09-10   Final Jeopardy!            HOLIDAYS    None   
+84538            1 1984-09-10         Jeopardy!      LAKES &amp; RIVERS    $400   
+84537            1 1984-09-10         Jeopardy!      ACTORS &amp; ROLES    $300   
+84536            1 1984-09-10         Jeopardy!     FOREIGN CUISINE    $300   
+84564            1 1984-09-10  Double Jeopardy!      4-LETTER WORDS  $1,000   
+84535            1 1984-09-10         Jeopardy!             ANIMALS    $300   
+84533            1 1984-09-10         Jeopardy!      LAKES &amp; RIVERS    $800   
+84532            1 1984-09-10         Jeopardy!      ACTORS &amp; ROLES    $200   
+84531            1 1984-09-10         Jeopardy!     FOREIGN CUISINE    $200   
+84530            1 1984-09-10         Jeopardy!             ANIMALS    $200   
+84529            1 1984-09-10         Jeopardy!          INVENTIONS    $200   
+84528            1 1984-09-10         Jeopardy!      LAKES &amp; RIVERS    $200   
+84527            1 1984-09-10         Jeopardy!      ACTORS &amp; ROLES    $100   
+84526            1 1984-09-10         Jeopardy!     FOREIGN CUISINE    $100   
+
+                                                Question  \
+84523            River mentioned most often in the Bible   
+84565  According to 1st Timothy, it is the &#34;root of a...   
+84566  Name under which experimenter Don Herbert taug...   
+84567    D.C. building shaken by November &#39;83 bomb blast   
+84568  After the deed, he leaped to the stage shoutin...   
+84569  The president takes one before stepping into o...   
+84570       The third Monday of January starting in 1986   
+84538  American river only 33 miles shorter than the ...   
+84537  He may &#34;Never Say Never Again&#34; when asked to b...   
+84536                    Jewish crepe filled with cheese   
+84564  It&#39;s the first 4-letter word in &#34;The Star Span...   
+84535  When husbands &#34;pop&#34; for an ermine coat, they&#39;r...   
+84533  River in &lt;a href=&#34;http://www.j-archive.com/med...   
+84532  2 &#34;Saturday Night&#34; alumni who tried &#34;Trading P...   
+84531  A British variety is called &#34;bangers&#34;, a Mexic...   
+84530  There are about 40,000 muscles &amp; tendons in th...   
+84529  In 1869 an American minister created this &#34;ori...   
+84528                             Scottish word for lake   
+84527  Video in which Michael Jackson plays a werewol...   
+84526                            The &#34;coq&#34; in coq au vin   
+
+                           Answer  \
+84523                  the Jordan   
+84565           the love of money   
+84566                  Mr. Wizard   
+84567                 the Capitol   
+84568           John Wilkes Booth   
+84569                        oath   
+84570      Martin Luther King Day   
+84538                the Missouri   
+84537                Sean Connery   
+84536                    a blintz   
+84564                        what   
+84535                      weasel   
+84533             the Volga River   
+84532  Dan Aykroyd &amp; Eddie Murphy   
+84531                     sausage   
+84530                   the trunk   
+84529                the rickshaw   
+84528                        loch   
+84527                  &#34;Thriller&#34;   
+84526                     chicken   
+
+                                          clean_question  \
+84523            river mentioned most often in the bible   
+84565  according to 1st timothy it is the root of all...   
+84566  name under which experimenter don herbert taug...   
+84567       dc building shaken by november 83 bomb blast   
+84568  after the deed he leaped to the stage shouting...   
+84569  the president takes one before stepping into o...   
+84570       the third monday of january starting in 1986   
+84538  american river only 33 miles shorter than the ...   
+84537  he may never say never again when asked to be ...   
+84536                    jewish crepe filled with cheese   
+84564  its the first 4letter word in the star spangle...   
+84535  when husbands pop for an ermine coat theyre ac...   
+84533  river in a hrefhttpwwwjarchivecommedia19840910...   
+84532   2 saturday night alumni who tried trading places   
+84531  a british variety is called bangers a mexican ...   
+84530  there are about 40000 muscles  tendons in this...   
+84529  in 1869 an american minister created this orie...   
+84528                             scottish word for lake   
+84527  video in which michael jackson plays a werewol...   
+84526                              the coq in coq au vin   
+
+                    clean_answer  clean_value  answer_in_question  
+84523                 the jordan          100            0.000000  
+84565          the love of money         1000            0.333333  
+84566                  mr wizard         1000            0.000000  
+84567                the capitol         1000            0.000000  
+84568          john wilkes booth         1000            0.000000  
+84569                       oath         1000            0.000000  
+84570     martin luther king day            0            0.000000  
+84538               the missouri          400            0.000000  
+84537               sean connery          300            0.000000  
+84536                   a blintz          300            0.000000  
+84564                       what         1000            0.000000  
+84535                     weasel          300            0.000000  
+84533            the volga river          800            0.500000  
+84532  dan aykroyd  eddie murphy          200            0.000000  
+84531                    sausage          200            0.000000  
+84530                  the trunk          200            0.000000  
+84529               the rickshaw          200            0.000000  
+84528                       loch          200            0.000000  
+84527                   thriller          100            0.000000  
+84526                    chicken          100            0.000000  
+(216930, 11)
 </pre>
 </div>
 </div>
@@ -1633,18 +1492,24 @@ Name: Additional Info, Length: 200, dtype: object
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">movie</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">characters</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">addinfo1</span><span class="p">:</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; {&#39;&quot;</span><span class="p">)</span>
-    <span class="n">movie</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">characters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">final_nominations</span><span class="p">[</span><span class="s2">&quot;Movie&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">movie</span>
-<span class="n">final_nominations</span><span class="p">[</span><span class="s2">&quot;Character&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">characters</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">final_nominations</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">terms_used</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="n">question_overlap</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">jeo</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">split_question</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;clean_question&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="n">split_question</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">split_question</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">]</span>
+    <span class="n">match_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">split_question</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">terms_used</span><span class="p">:</span>
+            <span class="n">match_count</span> <span class="o">+=</span> <span class="mi">1</span>  
+        <span class="n">terms_used</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>        
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_question</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">match_count</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_question</span><span class="p">)</span>
+    <span class="n">question_overlap</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match_count</span><span class="p">)</span>    
+<span class="n">jeo</span><span class="p">[</span><span class="s2">&quot;question_overlap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">question_overlap</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeo</span><span class="p">[</span><span class="s2">&quot;question_overlap&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -1661,41 +1526,7 @@ Name: Additional Info, Length: 200, dtype: object
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>   Year                  Category          Nominee  \
-0  2010     Actor -- Leading Role    Javier Bardem   
-1  2010     Actor -- Leading Role     Jeff Bridges   
-2  2010     Actor -- Leading Role  Jesse Eisenberg   
-3  2010     Actor -- Leading Role      Colin Firth   
-4  2010     Actor -- Leading Role     James Franco   
-5  2010  Actor -- Supporting Role   Christian Bale   
-6  2010  Actor -- Supporting Role      John Hawkes   
-7  2010  Actor -- Supporting Role    Jeremy Renner   
-8  2010  Actor -- Supporting Role     Mark Ruffalo   
-9  2010  Actor -- Supporting Role    Geoffrey Rush   
-
-                          Additional Info  Won                   Movie  \
-0                      Biutiful {&#39;Uxbal&#39;}    0                Biutiful   
-1           True Grit {&#39;Rooster Cogburn&#39;}    0               True Grit   
-2  The Social Network {&#39;Mark Zuckerberg&#39;}    0      The Social Network   
-3    The King&#39;s Speech {&#39;King George VI&#39;}    1       The King&#39;s Speech   
-4              127 Hours {&#39;Aron Ralston&#39;}    0               127 Hours   
-5            The Fighter {&#39;Dicky Eklund&#39;}    1             The Fighter   
-6              Winter&#39;s Bone {&#39;Teardrop&#39;}    0           Winter&#39;s Bone   
-7             The Town {&#39;James Coughlin&#39;}    0                The Town   
-8         The Kids Are All Right {&#39;Paul&#39;}    0  The Kids Are All Right   
-9      The King&#39;s Speech {&#39;Lionel Logue&#39;}    0       The King&#39;s Speech   
-
-         Character  
-0            Uxbal  
-1  Rooster Cogburn  
-2  Mark Zuckerberg  
-3   King George VI  
-4     Aron Ralston  
-5     Dicky Eklund  
-6         Teardrop  
-7   James Coughlin  
-8             Paul  
-9     Lionel Logue  
+<pre>0.8814681418912709
 </pre>
 </div>
 </div>
@@ -1703,26 +1534,29 @@ Name: Additional Info, Length: 200, dtype: object
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The rate appears to be very high, honestly it's only normal with 200000 rows of data, when it towards the later, many words are bound to be repeated many times since we do not pay attention to the order of the words and how they connect with each other.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_nominations</span> <span class="o">=</span> <span class="n">final_nominations</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Additional Info&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_nominations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;clean_value&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">800</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">value</span>
+<span class="n">jeo</span><span class="p">[</span><span class="s2">&quot;high_value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jeo</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jeo</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -1735,88 +1569,39 @@ Name: Additional Info, Length: 200, dtype: object
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[54]:</div>
+<div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>       Show Number   Air Date             Round            Category  Value  \
+84523            1 1984-09-10         Jeopardy!      LAKES &amp; RIVERS   $100   
+84565            1 1984-09-10  Double Jeopardy!           THE BIBLE  $1000   
+84566            1 1984-09-10  Double Jeopardy!            &#39;50&#39;S TV  $1000   
+84567            1 1984-09-10  Double Jeopardy!  NATIONAL LANDMARKS  $1000   
+84568            1 1984-09-10  Double Jeopardy!           NOTORIOUS  $1000   
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
+                                                Question             Answer  \
+84523            River mentioned most often in the Bible         the Jordan   
+84565  According to 1st Timothy, it is the &#34;root of a...  the love of money   
+84566  Name under which experimenter Don Herbert taug...         Mr. Wizard   
+84567    D.C. building shaken by November &#39;83 bomb blast        the Capitol   
+84568  After the deed, he leaped to the stage shoutin...  John Wilkes Booth   
 
-    .dataframe thead th {
-        text-align: left;
-    }
+                                          clean_question       clean_answer  \
+84523            river mentioned most often in the bible         the jordan   
+84565  according to 1st timothy it is the root of all...  the love of money   
+84566  name under which experimenter don herbert taug...          mr wizard   
+84567       dc building shaken by november 83 bomb blast        the capitol   
+84568  after the deed he leaped to the stage shouting...  john wilkes booth   
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Year</th>
-      <th>Category</th>
-      <th>Nominee</th>
-      <th>Won</th>
-      <th>Movie</th>
-      <th>Character</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>Javier Bardem</td>
-      <td>0</td>
-      <td>Biutiful</td>
-      <td>Uxbal</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>Jeff Bridges</td>
-      <td>0</td>
-      <td>True Grit</td>
-      <td>Rooster Cogburn</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>Jesse Eisenberg</td>
-      <td>0</td>
-      <td>The Social Network</td>
-      <td>Mark Zuckerberg</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>Colin Firth</td>
-      <td>1</td>
-      <td>The King's Speech</td>
-      <td>King George VI</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2010</td>
-      <td>Actor -- Leading Role</td>
-      <td>James Franco</td>
-      <td>0</td>
-      <td>127 Hours</td>
-      <td>Aron Ralston</td>
-    </tr>
-  </tbody>
-</table>
+       clean_value  answer_in_question  high_value  
+84523          100            0.000000           0  
+84565         1000            0.333333           1  
+84566         1000            0.000000           1  
+84567         1000            0.000000           1  
+84568         1000            0.000000           1  
+</pre>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -1825,12 +1610,10 @@ Name: Additional Info, Length: 200, dtype: object
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#automatically setup new database and pass in data with pandas.to_sql method</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;nominations.db&quot;</span><span class="p">)</span>
-<span class="n">final_nominations</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;nominations&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">jeo</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;Question&quot;</span><span class="p">,</span> <span class="s2">&quot;Answer&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1840,27 +1623,130 @@ Name: Additional Info, Length: 200, dtype: object
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;pragma table_info(nominations)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">jeo</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>       Show Number   Air Date             Round            Category  \
+84523            1 1984-09-10         Jeopardy!      LAKES &amp; RIVERS   
+84565            1 1984-09-10  Double Jeopardy!           THE BIBLE   
+84566            1 1984-09-10  Double Jeopardy!            &#39;50&#39;S TV   
+84567            1 1984-09-10  Double Jeopardy!  NATIONAL LANDMARKS   
+84568            1 1984-09-10  Double Jeopardy!           NOTORIOUS   
+
+                                          clean_question       clean_answer  \
+84523            river mentioned most often in the bible         the jordan   
+84565  according to 1st timothy it is the root of all...  the love of money   
+84566  name under which experimenter don herbert taug...          mr wizard   
+84567       dc building shaken by november 83 bomb blast        the capitol   
+84568  after the deed he leaped to the stage shouting...  john wilkes booth   
+
+       clean_value  answer_in_question  high_value  
+84523          100            0.000000           0  
+84565         1000            0.333333           1  
+84566         1000            0.000000           1  
+84567         1000            0.000000           1  
+84568         1000            0.000000           1  
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;nominations.db&quot;</span><span class="p">)</span>
-<span class="n">first_ten</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from nominations limit 10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">valuecount</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="n">low_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">high_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">jeo</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;clean_question&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;high_value&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">high_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">low_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">high_count</span><span class="p">,</span> <span class="n">low_count</span>
+
+<span class="n">obs_exp</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">terms_used</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">terms_used</span><span class="p">)</span>
+<span class="n">comparison_terms</span> <span class="o">=</span> <span class="n">terms_used</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">comparison_terms</span><span class="p">:</span>
+    <span class="n">obs_exp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">valuecount</span><span class="p">(</span><span class="n">term</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obs_exp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[(2, 3), (0, 1), (27, 92), (0, 1), (1, 0)]
+a
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">comparison_terms</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;unattractive&#39;, &#39;frozenfood&#39;, &#39;guitar&#39;, &#39;plumpynut&#39;, &#39;hrefhttpwwwjarchivecommedia20081006dj29wmvdemonstrateda&#39;]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -1870,8 +1756,24 @@ Name: Additional Info, Length: 200, dtype: object
 <div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">chisquare</span>
+<span class="n">high_value_count</span> <span class="o">=</span> <span class="n">jeo</span><span class="p">[</span><span class="n">jeo</span><span class="p">[</span><span class="s2">&quot;high_value&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">low_value_count</span> <span class="o">=</span> <span class="n">jeo</span><span class="p">[</span><span class="n">jeo</span><span class="p">[</span><span class="s2">&quot;high_value&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">high_value_count</span><span class="p">,</span> <span class="n">low_value_count</span><span class="p">)</span>
+<span class="n">chi_squared</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">obs_exp</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">total_prop</span> <span class="o">=</span> <span class="n">total</span><span class="o">/</span><span class="n">jeo</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">total_prop</span><span class="p">)</span>
+    <span class="n">exp_high_value</span> <span class="o">=</span> <span class="n">total_prop</span> <span class="o">*</span> <span class="n">high_value_count</span>
+    <span class="n">exp_low_value</span> <span class="o">=</span> <span class="n">total_prop</span> <span class="o">*</span> <span class="n">low_value_count</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">exp_high_value</span><span class="p">,</span> <span class="n">exp_low_value</span><span class="p">)</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">exp_high_value</span><span class="p">,</span> <span class="n">exp_low_value</span><span class="p">])</span>
+    <span class="n">chi_squared</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chisquare</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">exp</span><span class="p">))</span>
+<span class="n">chi_squared</span>
+    
 </pre></div>
 
 </div>
@@ -1888,128 +1790,34 @@ Name: Additional Info, Length: 200, dtype: object
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(0, &#39;Year&#39;, &#39;INTEGER&#39;, 0, None, 0)
-(1, &#39;Category&#39;, &#39;TEXT&#39;, 0, None, 0)
-(2, &#39;Nominee&#39;, &#39;TEXT&#39;, 0, None, 0)
-(3, &#39;Won&#39;, &#39;INTEGER&#39;, 0, None, 0)
-(4, &#39;Movie&#39;, &#39;TEXT&#39;, 0, None, 0)
-(5, &#39;Character&#39;, &#39;TEXT&#39;, 0, None, 0)
+<pre>61422 155508
+5 2.3048909786567094e-05
+1.415710136910524 3.5842898630894755
+1 4.609781957313419e-06
+0.2831420273821048 0.7168579726178952
+119 0.0005485640529202969
+33.693901258470476 85.30609874152954
+1 4.609781957313419e-06
+0.2831420273821048 0.7168579726178952
+1 4.609781957313419e-06
+0.2831420273821048 0.7168579726178952
 </pre>
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">first_ten</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
 <div class="output_area">
 
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(2010, &#39;Actor -- Leading Role&#39;, &#39;Javier Bardem&#39;, 0, &#39;Biutiful&#39;, &#39;Uxbal&#39;)
-(2010, &#39;Actor -- Leading Role&#39;, &#39;Jeff Bridges&#39;, 0, &#39;True Grit&#39;, &#39;Rooster Cogburn&#39;)
-(2010, &#39;Actor -- Leading Role&#39;, &#39;Jesse Eisenberg&#39;, 0, &#39;The Social Network&#39;, &#39;Mark Zuckerberg&#39;)
-(2010, &#39;Actor -- Leading Role&#39;, &#39;Colin Firth&#39;, 1, &#34;The King&#39;s Speech&#34;, &#39;King George VI&#39;)
-(2010, &#39;Actor -- Leading Role&#39;, &#39;James Franco&#39;, 0, &#39;127 Hours&#39;, &#39;Aron Ralston&#39;)
-(2010, &#39;Actor -- Supporting Role&#39;, &#39;Christian Bale&#39;, 1, &#39;The Fighter&#39;, &#39;Dicky Eklund&#39;)
-(2010, &#39;Actor -- Supporting Role&#39;, &#39;John Hawkes&#39;, 0, &#34;Winter&#39;s Bone&#34;, &#39;Teardrop&#39;)
-(2010, &#39;Actor -- Supporting Role&#39;, &#39;Jeremy Renner&#39;, 0, &#39;The Town&#39;, &#39;James Coughlin&#39;)
-(2010, &#39;Actor -- Supporting Role&#39;, &#39;Mark Ruffalo&#39;, 0, &#39;The Kids Are All Right&#39;, &#39;Paul&#39;)
-(2010, &#39;Actor -- Supporting Role&#39;, &#39;Geoffrey Rush&#39;, 0, &#34;The King&#39;s Speech&#34;, &#39;Lionel Logue&#39;)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[72]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">years_hosts</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2010</span><span class="p">,</span> <span class="s2">&quot;Steve Martin&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2009</span><span class="p">,</span> <span class="s2">&quot;Hugh Jackman&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2008</span><span class="p">,</span> <span class="s2">&quot;Jon Stewart&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2007</span><span class="p">,</span> <span class="s2">&quot;Ellen DeGeneres&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2006</span><span class="p">,</span> <span class="s2">&quot;Jon Stewart&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2005</span><span class="p">,</span> <span class="s2">&quot;Chris Rock&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2004</span><span class="p">,</span> <span class="s2">&quot;Billy Crystal&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2003</span><span class="p">,</span> <span class="s2">&quot;Steve Martin&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="s2">&quot;Whoopi Goldberg&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2001</span><span class="p">,</span> <span class="s2">&quot;Steve Martin&quot;</span><span class="p">),</span>
-               <span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="s2">&quot;Billy Crystal&quot;</span><span class="p">),</span>
-            <span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">create table ceremonies(</span>
-<span class="s1">id integer PRIMARY KEY,</span>
-<span class="s1">Year integer,</span>
-<span class="s1">Host text)&#39;&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">insert_query</span> <span class="o">=</span> <span class="s2">&quot;INSERT  INTO ceremonies (Year, Host) VALUES (?, ?);&quot;</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">insert_query</span><span class="p">,</span> <span class="n">years_hosts</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[76]:</div>
+<div class="prompt output_prompt">Out[70]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127abe30&gt;</pre>
+<pre>[Power_divergenceResult(statistic=0.3363947754070794, pvalue=0.56191765510245351),
+ Power_divergenceResult(statistic=0.39497646423335131, pvalue=0.52969509124866954),
+ Power_divergenceResult(statistic=1.8551293016977488, pvalue=0.1731880028017444),
+ Power_divergenceResult(statistic=0.39497646423335131, pvalue=0.52969509124866954),
+ Power_divergenceResult(statistic=2.5317964247338085, pvalue=0.11157312838169751)]</pre>
 </div>
 
 </div>
@@ -2018,493 +1826,14 @@ Name: Additional Info, Length: 200, dtype: object
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from ceremonies limit 10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>None of the pvalue &lt; 0.05, so all the results are statistically insignifant. From the five words we tested, there are no clear sign that the word occurence differ much in high and low value questions.</p>
 
 </div>
 </div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[77]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 2010, &#39;Steve Martin&#39;),
- (2, 2009, &#39;Hugh Jackman&#39;),
- (3, 2008, &#39;Jon Stewart&#39;),
- (4, 2007, &#39;Ellen DeGeneres&#39;),
- (5, 2006, &#39;Jon Stewart&#39;),
- (6, 2005, &#39;Chris Rock&#39;),
- (7, 2004, &#39;Billy Crystal&#39;),
- (8, 2003, &#39;Steve Martin&#39;),
- (9, 2002, &#39;Whoopi Goldberg&#39;),
- (10, 2001, &#39;Steve Martin&#39;)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;pragma table_info(ceremonies)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[78]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(0, &#39;id&#39;, &#39;integer&#39;, 0, None, 1),
- (1, &#39;Year&#39;, &#39;integer&#39;, 0, None, 0),
- (2, &#39;Host&#39;, &#39;text&#39;, 0, None, 0)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[79]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#turn on foreign key constraints</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON;&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[79]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127abc70&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[82]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">innerjoin</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">SELECT nominations.category, nominations.nominee, nominations.movie, nominations.character, nominations.won, ceremonies.id</span>
-<span class="s1">FROM nominations</span>
-<span class="s1">INNER JOIN ceremonies ON</span>
-<span class="s1">nominations.year == ceremonies.year</span>
-<span class="s1">;&#39;&#39;&#39;</span>
-
-<span class="n">nomination2</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">innerjoin</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">nomination2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[(&#39;Actor -- Leading Role&#39;, &#39;Javier Bardem&#39;, &#39;Biutiful&#39;, &#39;Uxbal&#39;, 0, 1), (&#39;Actor -- Leading Role&#39;, &#39;Jeff Bridges&#39;, &#39;True Grit&#39;, &#39;Rooster Cogburn&#39;, 0, 1), (&#39;Actor -- Leading Role&#39;, &#39;Jesse Eisenberg&#39;, &#39;The Social Network&#39;, &#39;Mark Zuckerberg&#39;, 0, 1), (&#39;Actor -- Leading Role&#39;, &#39;Colin Firth&#39;, &#34;The King&#39;s Speech&#34;, &#39;King George VI&#39;, 1, 1), (&#39;Actor -- Leading Role&#39;, &#39;James Franco&#39;, &#39;127 Hours&#39;, &#39;Aron Ralston&#39;, 0, 1), (&#39;Actor -- Supporting Role&#39;, &#39;Christian Bale&#39;, &#39;The Fighter&#39;, &#39;Dicky Eklund&#39;, 1, 1), (&#39;Actor -- Supporting Role&#39;, &#39;John Hawkes&#39;, &#34;Winter&#39;s Bone&#34;, &#39;Teardrop&#39;, 0, 1), (&#39;Actor -- Supporting Role&#39;, &#39;Jeremy Renner&#39;, &#39;The Town&#39;, &#39;James Coughlin&#39;, 0, 1), (&#39;Actor -- Supporting Role&#39;, &#39;Mark Ruffalo&#39;, &#39;The Kids Are All Right&#39;, &#39;Paul&#39;, 0, 1), (&#39;Actor -- Supporting Role&#39;, &#39;Geoffrey Rush&#39;, &#34;The King&#39;s Speech&#34;, &#39;Lionel Logue&#39;, 0, 1), (&#39;Actress -- Leading Role&#39;, &#39;Annette Bening&#39;, &#39;The Kids Are All Right&#39;, &#39;Nic&#39;, 0, 1), (&#39;Actress -- Leading Role&#39;, &#39;Nicole Kidman&#39;, &#39;Rabbit Hole&#39;, &#39;Becca&#39;, 0, 1), (&#39;Actress -- Leading Role&#39;, &#39;Jennifer Lawrence&#39;, &#34;Winter&#39;s Bone&#34;, &#39;Ree&#39;, 0, 1), (&#39;Actress -- Leading Role&#39;, &#39;Natalie Portman&#39;, &#39;Black Swan&#39;, &#39;Nina Sayers/The Swan Queen&#39;, 1, 1), (&#39;Actress -- Leading Role&#39;, &#39;Michelle Williams&#39;, &#39;Blue Valentine&#39;, &#39;Cindy&#39;, 0, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Amy Adams&#39;, &#39;The Fighter&#39;, &#39;Charlene Fleming&#39;, 0, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Helena Bonham Carter&#39;, &#34;The King&#39;s Speech&#34;, &#39;Queen Elizabeth&#39;, 0, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Melissa Leo&#39;, &#39;The Fighter&#39;, &#39;Alice Ward&#39;, 1, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Hailee Steinfeld&#39;, &#39;True Grit&#39;, &#39;Mattie Ross&#39;, 0, 1), (&#39;Actress -- Supporting Role&#39;, &#39;Jacki Weaver&#39;, &#39;Animal Kingdom&#39;, &#34;Janine &#39;Smurf&#39; Cody&#34;, 0, 1), (&#39;Actor -- Leading Role&#39;, &#39;Jeff Bridges&#39;, &#39;Crazy Heart&#39;, &#39;Bad Blake&#39;, 1, 2), (&#39;Actor -- Leading Role&#39;, &#39;George Clooney&#39;, &#39;Up in the Air&#39;, &#39;Ryan Bingham&#39;, 0, 2), (&#39;Actor -- Leading Role&#39;, &#39;Colin Firth&#39;, &#39;A Single Man&#39;, &#39;George&#39;, 0, 2), (&#39;Actor -- Leading Role&#39;, &#39;Morgan Freeman&#39;, &#39;Invictus&#39;, &#39;Nelson Mandela&#39;, 0, 2), (&#39;Actor -- Leading Role&#39;, &#39;Jeremy Renner&#39;, &#39;The Hurt Locker&#39;, &#39;Staff Sergeant William James&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Matt Damon&#39;, &#39;Invictus&#39;, &#39;Francois Pienaar&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Woody Harrelson&#39;, &#39;The Messenger&#39;, &#39;Captain Tony Stone&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Christopher Plummer&#39;, &#39;The Last Station&#39;, &#39;Tolstoy&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Stanley Tucci&#39;, &#39;The Lovely Bones&#39;, &#39;George Harvey&#39;, 0, 2), (&#39;Actor -- Supporting Role&#39;, &#39;Christoph Waltz&#39;, &#39;Inglourious Basterds&#39;, &#39;Col. Hans Landa&#39;, 1, 2), (&#39;Actress -- Leading Role&#39;, &#39;Sandra Bullock&#39;, &#39;The Blind Side&#39;, &#39;Leigh Anne Tuohy&#39;, 1, 2), (&#39;Actress -- Leading Role&#39;, &#39;Helen Mirren&#39;, &#39;The Last Station&#39;, &#39;Sofya&#39;, 0, 2), (&#39;Actress -- Leading Role&#39;, &#39;Carey Mulligan&#39;, &#39;An Education&#39;, &#39;Jenny&#39;, 0, 2), (&#39;Actress -- Leading Role&#39;, &#39;Gabourey Sidibe&#39;, &#34;Precious: Based on the Novel &#39;Push&#39; by Sapphire&#34;, &#39;Precious&#39;, 0, 2), (&#39;Actress -- Leading Role&#39;, &#39;Meryl Streep&#39;, &#39;Julie &amp; Julia&#39;, &#39;Julia Child&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#39;Penélope Cruz&#39;, &#39;Nine&#39;, &#39;Carla&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#39;Vera Farmiga&#39;, &#39;Up in the Air&#39;, &#39;Alex Goran&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#39;Maggie Gyllenhaal&#39;, &#39;Crazy Heart&#39;, &#39;Jean Craddock&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#39;Anna Kendrick&#39;, &#39;Up in the Air&#39;, &#39;Natalie Keener&#39;, 0, 2), (&#39;Actress -- Supporting Role&#39;, &#34;Mo&#39;Nique&#34;, &#34;Precious: Based on the Novel &#39;Push&#39; by Sapphire&#34;, &#39;Mary&#39;, 1, 2), (&#39;Actor -- Leading Role&#39;, &#39;Richard Jenkins&#39;, &#39;The Visitor&#39;, &#39;Walter&#39;, 0, 3), (&#39;Actor -- Leading Role&#39;, &#39;Frank Langella&#39;, &#39;Frost/Nixon&#39;, &#39;Richard Nixon&#39;, 0, 3), (&#39;Actor -- Leading Role&#39;, &#39;Sean Penn&#39;, &#39;Milk&#39;, &#39;Harvey Milk&#39;, 1, 3), (&#39;Actor -- Leading Role&#39;, &#39;Brad Pitt&#39;, &#39;The Curious Case of Benjamin Button&#39;, &#39;Benjamin Button&#39;, 0, 3), (&#39;Actor -- Leading Role&#39;, &#39;Mickey Rourke&#39;, &#39;The Wrestler&#39;, &#39;Randy&#39;, 0, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Josh Brolin&#39;, &#39;Milk&#39;, &#39;Dan White&#39;, 0, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Robert Downey Jr.&#39;, &#39;Tropic Thunder&#39;, &#39;Kirk Lazarus&#39;, 0, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Philip Seymour Hoffman&#39;, &#39;Doubt&#39;, &#39;Father Brendan Flynn&#39;, 0, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Heath Ledger&#39;, &#39;The Dark Knight&#39;, &#39;Joker&#39;, 1, 3), (&#39;Actor -- Supporting Role&#39;, &#39;Michael Shannon&#39;, &#39;Revolutionary Road&#39;, &#39;John Givings&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Anne Hathaway&#39;, &#39;Rachel Getting Married&#39;, &#39;Kym&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Angelina Jolie&#39;, &#39;Changeling&#39;, &#39;Christine Collins&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Melissa Leo&#39;, &#39;Frozen River&#39;, &#39;Ray Eddy&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Meryl Streep&#39;, &#39;Doubt&#39;, &#39;Sister Aloysius Beauvier&#39;, 0, 3), (&#39;Actress -- Leading Role&#39;, &#39;Kate Winslet&#39;, &#39;The Reader&#39;, &#39;Hanna Schmitz&#39;, 1, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Amy Adams&#39;, &#39;Doubt&#39;, &#39;Sister James&#39;, 0, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Penélope Cruz&#39;, &#39;Vicky Cristina Barcelona&#39;, &#39;Maria Elena&#39;, 1, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Viola Davis&#39;, &#39;Doubt&#39;, &#39;Mrs. Miller&#39;, 0, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Taraji P. Henson&#39;, &#39;The Curious Case of Benjamin Button&#39;, &#39;Queenie&#39;, 0, 3), (&#39;Actress -- Supporting Role&#39;, &#39;Marisa Tomei&#39;, &#39;The Wrestler&#39;, &#39;Cassidy&#39;, 0, 3), (&#39;Actor -- Leading Role&#39;, &#39;George Clooney&#39;, &#39;Michael Clayton&#39;, &#39;Michael Clayton&#39;, 0, 4), (&#39;Actor -- Leading Role&#39;, &#39;Daniel Day-Lewis&#39;, &#39;There Will Be Blood&#39;, &#39;Daniel Plainview&#39;, 1, 4), (&#39;Actor -- Leading Role&#39;, &#39;Johnny Depp&#39;, &#39;Sweeney Todd The Demon Barber of Fleet Street&#39;, &#39;Sweeney Todd&#39;, 0, 4), (&#39;Actor -- Leading Role&#39;, &#39;Tommy Lee Jones&#39;, &#39;In the Valley of Elah&#39;, &#39;Hank Deerfield&#39;, 0, 4), (&#39;Actor -- Leading Role&#39;, &#39;Viggo Mortensen&#39;, &#39;Eastern Promises&#39;, &#39;Nikolai&#39;, 0, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Casey Affleck&#39;, &#39;The Assassination of Jesse James by the Coward Robert Ford&#39;, &#39;Robert Ford&#39;, 0, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Javier Bardem&#39;, &#39;No Country for Old Men&#39;, &#39;Anton Chigurh&#39;, 1, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Philip Seymour Hoffman&#39;, &#34;Charlie Wilson&#39;s War&#34;, &#39;Gust Avrakotos&#39;, 0, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Hal Holbrook&#39;, &#39;Into the Wild&#39;, &#39;Ron Franz&#39;, 0, 4), (&#39;Actor -- Supporting Role&#39;, &#39;Tom Wilkinson&#39;, &#39;Michael Clayton&#39;, &#39;Arthur Edens&#39;, 0, 4), (&#39;Actress -- Leading Role&#39;, &#39;Cate Blanchett&#39;, &#39;Elizabeth: The Golden Age&#39;, &#39;Queen Elizabeth I&#39;, 0, 4), (&#39;Actress -- Leading Role&#39;, &#39;Julie Christie&#39;, &#39;Away from Her&#39;, &#39;Fiona&#39;, 0, 4), (&#39;Actress -- Leading Role&#39;, &#39;Marion Cotillard&#39;, &#39;La Vie en Rose&#39;, &#39;Edith Piaf&#39;, 1, 4), (&#39;Actress -- Leading Role&#39;, &#39;Laura Linney&#39;, &#39;The Savages&#39;, &#39;Wendy Savage&#39;, 0, 4), (&#39;Actress -- Leading Role&#39;, &#39;Ellen Page&#39;, &#39;Juno&#39;, &#39;Juno MacGuff&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Cate Blanchett&#39;, &#34;I&#39;m Not There&#34;, &#39;Jude&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Ruby Dee&#39;, &#39;American Gangster&#39;, &#39;Mama Lucas&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Saoirse Ronan&#39;, &#39;Atonement&#39;, &#39;Briony Tallis, aged 13&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Amy Ryan&#39;, &#39;Gone Baby Gone&#39;, &#39;Helene McCready&#39;, 0, 4), (&#39;Actress -- Supporting Role&#39;, &#39;Tilda Swinton&#39;, &#39;Michael Clayton&#39;, &#39;Karen Crowder&#39;, 1, 4), (&#39;Actor -- Leading Role&#39;, &#39;Leonardo DiCaprio&#39;, &#39;Blood Diamond&#39;, &#39;Danny Archer&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#39;Ryan Gosling&#39;, &#39;Half Nelson&#39;, &#39;Dan Dunne&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#34;Peter O&#39;Toole&#34;, &#39;Venus&#39;, &#39;Maurice&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#39;Will Smith&#39;, &#39;The Pursuit of Happyness&#39;, &#39;Chris Gardner&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#39;Forest Whitaker&#39;, &#39;The Last King of Scotland&#39;, &#39;Idi Amin&#39;, 1, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Alan Arkin&#39;, &#39;Little Miss Sunshine&#39;, &#39;Grandpa&#39;, 1, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Jackie Earle Haley&#39;, &#39;Little Children&#39;, &#39;Ronnie J. McGorvey&#39;, 0, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Djimon Hounsou&#39;, &#39;Blood Diamond&#39;, &#39;Solomon Vandy&#39;, 0, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Eddie Murphy&#39;, &#39;Dreamgirls&#39;, &#34;James &#39;Thunder&#39; Early&#34;, 0, 5), (&#39;Actor -- Supporting Role&#39;, &#39;Mark Wahlberg&#39;, &#39;The Departed&#39;, &#39;Dignam&#39;, 0, 5), (&#39;Actress -- Leading Role&#39;, &#39;Penélope Cruz&#39;, &#39;Volver&#39;, &#39;Raimunda&#39;, 0, 5), (&#39;Actress -- Leading Role&#39;, &#39;Judi Dench&#39;, &#39;Notes on a Scandal&#39;, &#39;Barbara Covett&#39;, 0, 5), (&#39;Actress -- Leading Role&#39;, &#39;Helen Mirren&#39;, &#39;The Queen&#39;, &#39;The Queen&#39;, 1, 5), (&#39;Actress -- Leading Role&#39;, &#39;Meryl Streep&#39;, &#39;The Devil Wears Prada&#39;, &#39;Miranda Priestly&#39;, 0, 5), (&#39;Actress -- Leading Role&#39;, &#39;Kate Winslet&#39;, &#39;Little Children&#39;, &#39;Sarah Pierce&#39;, 0, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Adriana Barraza&#39;, &#39;Babel&#39;, &#39;Amelia&#39;, 0, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Cate Blanchett&#39;, &#39;Notes on a Scandal&#39;, &#39;Sheba Hart&#39;, 0, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Abigail Breslin&#39;, &#39;Little Miss Sunshine&#39;, &#39;Olive&#39;, 0, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Jennifer Hudson&#39;, &#39;Dreamgirls&#39;, &#39;Effie White&#39;, 1, 5), (&#39;Actress -- Supporting Role&#39;, &#39;Rinko Kikuchi&#39;, &#39;Babel&#39;, &#39;Chieko&#39;, 0, 5), (&#39;Actor -- Leading Role&#39;, &#39;Philip Seymour Hoffman&#39;, &#39;Capote&#39;, &#39;Truman Capote&#39;, 1, 6), (&#39;Actor -- Leading Role&#39;, &#39;Terrence Howard&#39;, &#39;Hustle &amp; Flow&#39;, &#39;DJay&#39;, 0, 6), (&#39;Actor -- Leading Role&#39;, &#39;Heath Ledger&#39;, &#39;Brokeback Mountain&#39;, &#39;Ennis Del Mar&#39;, 0, 6), (&#39;Actor -- Leading Role&#39;, &#39;Joaquin Phoenix&#39;, &#39;Walk the Line&#39;, &#39;John R. Cash&#39;, 0, 6), (&#39;Actor -- Leading Role&#39;, &#39;David Strathairn&#39;, &#39;Good Night, and Good Luck.&#39;, &#39;Edward R. Murrow&#39;, 0, 6), (&#39;Actor -- Supporting Role&#39;, &#39;George Clooney&#39;, &#39;Syriana&#39;, &#39;Bob Barnes&#39;, 1, 6), (&#39;Actor -- Supporting Role&#39;, &#39;Matt Dillon&#39;, &#39;Crash&#39;, &#39;Officer Ryan&#39;, 0, 6), (&#39;Actor -- Supporting Role&#39;, &#39;Paul Giamatti&#39;, &#39;Cinderella Man&#39;, &#39;Joe Gould&#39;, 0, 6), (&#39;Actor -- Supporting Role&#39;, &#39;Jake Gyllenhaal&#39;, &#39;Brokeback Mountain&#39;, &#39;Jack Twist&#39;, 0, 6), (&#39;Actor -- Supporting Role&#39;, &#39;William Hurt&#39;, &#39;A History of Violence&#39;, &#39;Richie Cusack&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Judi Dench&#39;, &#39;Mrs. Henderson Presents&#39;, &#39;Mrs. Laura Henderson&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Felicity Huffman&#39;, &#39;Transamerica&#39;, &#39;Bree&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Keira Knightley&#39;, &#39;Pride &amp; Prejudice&#39;, &#39;Elizabeth Bennet&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Charlize Theron&#39;, &#39;North Country&#39;, &#39;Josey Aimes&#39;, 0, 6), (&#39;Actress -- Leading Role&#39;, &#39;Reese Witherspoon&#39;, &#39;Walk the Line&#39;, &#39;June Carter&#39;, 1, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Amy Adams&#39;, &#39;Junebug&#39;, &#39;Ashley&#39;, 0, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Catherine Keener&#39;, &#39;Capote&#39;, &#39;Nelle Harper Lee&#39;, 0, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Frances McDormand&#39;, &#39;North Country&#39;, &#39;Glory&#39;, 0, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Rachel Weisz&#39;, &#39;The Constant Gardener&#39;, &#39;Tessa Quayle&#39;, 1, 6), (&#39;Actress -- Supporting Role&#39;, &#39;Michelle Williams&#39;, &#39;Brokeback Mountain&#39;, &#39;Alma&#39;, 0, 6), (&#39;Actor -- Leading Role&#39;, &#39;Don Cheadle&#39;, &#39;Hotel Rwanda&#39;, &#39;Paul Rusesabagina&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Johnny Depp&#39;, &#39;Finding Neverland&#39;, &#39;Sir James Matthew Barrie&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Leonardo DiCaprio&#39;, &#39;The Aviator&#39;, &#39;Howard Hughes&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Clint Eastwood&#39;, &#39;Million Dollar Baby&#39;, &#39;Frankie Dunn&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Jamie Foxx&#39;, &#39;Ray&#39;, &#39;Ray Charles&#39;, 1, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Alan Alda&#39;, &#39;The Aviator&#39;, &#39;Senator Ralph Owen Brewster&#39;, 0, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Thomas Haden Church&#39;, &#39;Sideways&#39;, &#39;Jack&#39;, 0, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Jamie Foxx&#39;, &#39;Collateral&#39;, &#39;Max&#39;, 0, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Morgan Freeman&#39;, &#39;Million Dollar Baby&#39;, &#39;Eddie Scrap-Iron Dupris&#39;, 1, 7), (&#39;Actor -- Supporting Role&#39;, &#39;Clive Owen&#39;, &#39;Closer&#39;, &#39;Larry&#39;, 0, 7), (&#39;Actress -- Leading Role&#39;, &#39;Annette Bening&#39;, &#39;Being Julia&#39;, &#39;Julia Lambert&#39;, 0, 7), (&#39;Actress -- Leading Role&#39;, &#39;Catalina Sandino Moreno&#39;, &#39;Maria Full of Grace&#39;, &#39;Maria&#39;, 0, 7), (&#39;Actress -- Leading Role&#39;, &#39;Imelda Staunton&#39;, &#39;Vera Drake&#39;, &#39;Vera&#39;, 0, 7), (&#39;Actress -- Leading Role&#39;, &#39;Hilary Swank&#39;, &#39;Million Dollar Baby&#39;, &#39;Maggie Fitzgerald&#39;, 1, 7), (&#39;Actress -- Leading Role&#39;, &#39;Kate Winslet&#39;, &#39;Eternal Sunshine of the Spotless Mind&#39;, &#39;Clementine Kruczynski&#39;, 0, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Cate Blanchett&#39;, &#39;The Aviator&#39;, &#39;Katharine Hepburn&#39;, 1, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Laura Linney&#39;, &#39;Kinsey&#39;, &#39;Clara McMillen&#39;, 0, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Virginia Madsen&#39;, &#39;Sideways&#39;, &#39;Maya&#39;, 0, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Sophie Okonedo&#39;, &#39;Hotel Rwanda&#39;, &#39;Tatiana Rusesabagina&#39;, 0, 7), (&#39;Actress -- Supporting Role&#39;, &#39;Natalie Portman&#39;, &#39;Closer&#39;, &#39;Alice&#39;, 0, 7), (&#39;Actor -- Leading Role&#39;, &#39;Johnny Depp&#39;, &#39;Pirates of the Caribbean: The Curse of the Black Pearl&#39;, &#39;Jack Sparrow&#39;, 0, 8), (&#39;Actor -- Leading Role&#39;, &#39;Ben Kingsley&#39;, &#39;House of Sand and Fog&#39;, &#39;Behrani&#39;, 0, 8), (&#39;Actor -- Leading Role&#39;, &#39;Jude Law&#39;, &#39;Cold Mountain&#39;, &#39;Inman&#39;, 0, 8), (&#39;Actor -- Leading Role&#39;, &#39;Bill Murray&#39;, &#39;Lost in Translation&#39;, &#39;Bob Harris&#39;, 0, 8), (&#39;Actor -- Leading Role&#39;, &#39;Sean Penn&#39;, &#39;Mystic River&#39;, &#39;Jimmy Markum&#39;, 1, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Alec Baldwin&#39;, &#39;The Cooler&#39;, &#39;Shelly Kaplow&#39;, 0, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Benicio Del Toro&#39;, &#39;21 Grams&#39;, &#39;Jack Jordan&#39;, 0, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Djimon Hounsou&#39;, &#39;In America&#39;, &#39;Mateo&#39;, 0, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Tim Robbins&#39;, &#39;Mystic River&#39;, &#39;Dave Boyle&#39;, 1, 8), (&#39;Actor -- Supporting Role&#39;, &#39;Ken Watanabe&#39;, &#39;The Last Samurai&#39;, &#39;Katsumoto&#39;, 0, 8), (&#39;Actress -- Leading Role&#39;, &#39;Keisha Castle-Hughes&#39;, &#39;Whale Rider&#39;, &#39;Paikea&#39;, 0, 8), (&#39;Actress -- Leading Role&#39;, &#39;Diane Keaton&#39;, &#34;Something&#39;s Gotta Give&#34;, &#39;Erica Barry&#39;, 0, 8), (&#39;Actress -- Leading Role&#39;, &#39;Samantha Morton&#39;, &#39;In America&#39;, &#39;Sarah&#39;, 0, 8), (&#39;Actress -- Leading Role&#39;, &#39;Charlize Theron&#39;, &#39;Monster&#39;, &#39;Aileen Wuornos&#39;, 1, 8), (&#39;Actress -- Leading Role&#39;, &#39;Naomi Watts&#39;, &#39;21 Grams&#39;, &#39;Cristina Peck&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Shohreh Aghdashloo&#39;, &#39;House of Sand and Fog&#39;, &#39;Nadi&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Patricia Clarkson&#39;, &#39;Pieces of April&#39;, &#39;Joy Burns&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Marcia Gay Harden&#39;, &#39;Mystic River&#39;, &#39;Celeste Boyle&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Holly Hunter&#39;, &#39;Thirteen&#39;, &#39;Melanie&#39;, 0, 8), (&#39;Actress -- Supporting Role&#39;, &#39;Renée Zellweger&#39;, &#39;Cold Mountain&#39;, &#39;Ruby Thewes&#39;, 1, 8), (&#39;Actor -- Leading Role&#39;, &#39;Adrien Brody&#39;, &#39;The Pianist&#39;, &#39;Wladyslaw Szpilman&#39;, 1, 9), (&#39;Actor -- Leading Role&#39;, &#39;Nicolas Cage&#39;, &#39;Adaptation&#39;, &#39;Charlie Kaufman &amp; Donald Kaufman&#39;, 0, 9), (&#39;Actor -- Leading Role&#39;, &#39;Michael Caine&#39;, &#39;The Quiet American&#39;, &#39;Thomas Fowler&#39;, 0, 9), (&#39;Actor -- Leading Role&#39;, &#39;Daniel Day-Lewis&#39;, &#39;Gangs of New York&#39;, &#34;Bill &#39;The Butcher&#39; Cutting&#34;, 0, 9), (&#39;Actor -- Leading Role&#39;, &#39;Jack Nicholson&#39;, &#39;About Schmidt&#39;, &#39;Warren Schmidt&#39;, 0, 9), (&#39;Actor -- Supporting Role&#39;, &#39;Chris Cooper&#39;, &#39;Adaptation&#39;, &#39;John Laroche&#39;, 1, 9), (&#39;Actor -- Supporting Role&#39;, &#39;Ed Harris&#39;, &#39;The Hours&#39;, &#39;Richard Brown&#39;, 0, 9), (&#39;Actor -- Supporting Role&#39;, &#39;Paul Newman&#39;, &#39;Road to Perdition&#39;, &#39;John Rooney&#39;, 0, 9), (&#39;Actor -- Supporting Role&#39;, &#39;John C. Reilly&#39;, &#39;Chicago&#39;, &#39;Amos Hart&#39;, 0, 9), (&#39;Actor -- Supporting Role&#39;, &#39;Christopher Walken&#39;, &#39;Catch Me If You Can&#39;, &#39;Frank Abagnale&#39;, 0, 9), (&#39;Actress -- Leading Role&#39;, &#39;Salma Hayek&#39;, &#39;Frida&#39;, &#39;Frida Kahlo&#39;, 0, 9), (&#39;Actress -- Leading Role&#39;, &#39;Nicole Kidman&#39;, &#39;The Hours&#39;, &#39;Virginia Woolf&#39;, 1, 9), (&#39;Actress -- Leading Role&#39;, &#39;Diane Lane&#39;, &#39;Unfaithful&#39;, &#39;Connie Sumner&#39;, 0, 9), (&#39;Actress -- Leading Role&#39;, &#39;Julianne Moore&#39;, &#39;Far from Heaven&#39;, &#39;Cathy Whitaker&#39;, 0, 9), (&#39;Actress -- Leading Role&#39;, &#39;Renée Zellweger&#39;, &#39;Chicago&#39;, &#39;Roxie Hart&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Kathy Bates&#39;, &#39;About Schmidt&#39;, &#39;Roberta Hertzel&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Julianne Moore&#39;, &#39;The Hours&#39;, &#39;Laura Brown&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Queen Latifah&#39;, &#39;Chicago&#39;, &#39;Matron Mama Morton&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Meryl Streep&#39;, &#39;Adaptation&#39;, &#39;Susan Orlean&#39;, 0, 9), (&#39;Actress -- Supporting Role&#39;, &#39;Catherine Zeta-Jones&#39;, &#39;Chicago&#39;, &#39;Velma Kelly&#39;, 1, 9), (&#39;Actor -- Leading Role&#39;, &#39;Russell Crowe&#39;, &#39;A Beautiful Mind&#39;, &#39;John Nash&#39;, 0, 10), (&#39;Actor -- Leading Role&#39;, &#39;Sean Penn&#39;, &#39;I Am Sam&#39;, &#39;Sam Dawson&#39;, 0, 10), (&#39;Actor -- Leading Role&#39;, &#39;Will Smith&#39;, &#39;Ali&#39;, &#39;Muhammad Ali&#39;, 0, 10), (&#39;Actor -- Leading Role&#39;, &#39;Denzel Washington&#39;, &#39;Training Day&#39;, &#39;Alonzo&#39;, 1, 10), (&#39;Actor -- Leading Role&#39;, &#39;Tom Wilkinson&#39;, &#39;In the Bedroom&#39;, &#39;Matt Fowler&#39;, 0, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Jim Broadbent&#39;, &#39;Iris&#39;, &#39;John Bayley&#39;, 1, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Ethan Hawke&#39;, &#39;Training Day&#39;, &#39;Jake&#39;, 0, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Ben Kingsley&#39;, &#39;Sexy Beast&#39;, &#39;Don Logan&#39;, 0, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Ian McKellen&#39;, &#39;The Lord of the Rings: The Fellowship of the Ring&#39;, &#39;Gandalf&#39;, 0, 10), (&#39;Actor -- Supporting Role&#39;, &#39;Jon Voight&#39;, &#39;Ali&#39;, &#39;Howard Cosell&#39;, 0, 10), (&#39;Actress -- Leading Role&#39;, &#39;Halle Berry&#39;, &#34;Monster&#39;s Ball&#34;, &#39;Leticia Musgrove&#39;, 1, 10), (&#39;Actress -- Leading Role&#39;, &#39;Judi Dench&#39;, &#39;Iris&#39;, &#39;Iris Murdoch&#39;, 0, 10), (&#39;Actress -- Leading Role&#39;, &#39;Nicole Kidman&#39;, &#39;Moulin Rouge&#39;, &#39;Satine&#39;, 0, 10), (&#39;Actress -- Leading Role&#39;, &#39;Sissy Spacek&#39;, &#39;In the Bedroom&#39;, &#39;Ruth Fowler&#39;, 0, 10), (&#39;Actress -- Leading Role&#39;, &#39;Renée Zellweger&#39;, &#34;Bridget Jones&#39;s Diary&#34;, &#39;Bridget Jones&#39;, 0, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Jennifer Connelly&#39;, &#39;A Beautiful Mind&#39;, &#39;Alicia Nash&#39;, 1, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Helen Mirren&#39;, &#39;Gosford Park&#39;, &#39;Mrs. Wilson&#39;, 0, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Maggie Smith&#39;, &#39;Gosford Park&#39;, &#39;Constance, Countess of Trentham&#39;, 0, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Marisa Tomei&#39;, &#39;In the Bedroom&#39;, &#39;Natalie Strout&#39;, 0, 10), (&#39;Actress -- Supporting Role&#39;, &#39;Kate Winslet&#39;, &#39;Iris&#39;, &#39;Young Iris Murdoch&#39;, 0, 10)]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">CREATE TABLE nominations2(</span>
-<span class="s1">id integer PRIMARY KEY,</span>
-<span class="s1">category text,</span>
-<span class="s1">nominee text,</span>
-<span class="s1">movie text,</span>
-<span class="s1">character text,</span>
-<span class="s1">won integer,</span>
-<span class="s1">ceremony_id integer,</span>
-<span class="s1">FOREIGN KEY(ceremony_id) REFERENCES ceremonies (id)</span>
-<span class="s1">);&#39;&#39;&#39;</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[84]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127cd180&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[86]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">insert_q2</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO nominations2 (category, nominee, movie, character, won, ceremony_id) VALUES (?, ?, ?, ?, ?, ?)&quot;</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">insert_q2</span><span class="p">,</span> <span class="n">nomination2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[86]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127abab0&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[87]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM nominations2 LIMIT 5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[87]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, &#39;Actor -- Leading Role&#39;, &#39;Javier Bardem&#39;, &#39;Biutiful&#39;, &#39;Uxbal&#39;, 0, 1),
- (2,
-  &#39;Actor -- Leading Role&#39;,
-  &#39;Jeff Bridges&#39;,
-  &#39;True Grit&#39;,
-  &#39;Rooster Cogburn&#39;,
-  0,
-  1),
- (3,
-  &#39;Actor -- Leading Role&#39;,
-  &#39;Jesse Eisenberg&#39;,
-  &#39;The Social Network&#39;,
-  &#39;Mark Zuckerberg&#39;,
-  0,
-  1),
- (4,
-  &#39;Actor -- Leading Role&#39;,
-  &#39;Colin Firth&#39;,
-  &#34;The King&#39;s Speech&#34;,
-  &#39;King George VI&#39;,
-  1,
-  1),
- (5,
-  &#39;Actor -- Leading Role&#39;,
-  &#39;James Franco&#39;,
-  &#39;127 Hours&#39;,
-  &#39;Aron Ralston&#39;,
-  0,
-  1)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[88]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q3</span> <span class="o">=</span> <span class="s2">&quot;DROP TABLE nominations&quot;</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">q3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[88]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127cd030&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q4</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE nominations2 RENAME TO nominations&quot;</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">q4</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[90]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127cd570&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[91]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#create table movies</span>
-<span class="n">create_q1</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">CREATE TABLE movies (</span>
-<span class="s1">id integer PRIMARY KEY,</span>
-<span class="s1">movie text);</span>
-<span class="s1">&#39;&#39;&#39;</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_q1</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[91]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127cd420&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[92]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#create table actors</span>
-<span class="n">create_q2</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">CREATE TABLE actors (</span>
-<span class="s1">id integer PRIMARY KEY,</span>
-<span class="s1">actor text);</span>
-<span class="s1">&#39;&#39;&#39;</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_q2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[92]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127cd5e0&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[94]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#create table movie_actor</span>
-<span class="n">create_q3</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">CREATE TABLE movie_actor (</span>
-<span class="s1">id integer PRIMARY KEY,</span>
-<span class="s1">movie_id integer REFERENCES movies(id),</span>
-<span class="s1">actor_id integer REFERENCES actors(id));</span>
-<span class="s1">&#39;&#39;&#39;</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_q3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[94]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x1127cd7a0&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
  
 
@@ -2539,23 +1868,44 @@ Name: Additional Info, Length: 200, dtype: object
 </script>
                 </article>
             </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://33phoebe.github.io/oscar.html" rel="bookmark"
+                           title="Permalink to Explore Oscar Nominees Data with sqlite3 and pandas">Explore Oscar Nominees Data with sqlite3 and pandas</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-02-13T12:00:00-05:00">
+                Published: Tue 13 February 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://33phoebe.github.io/author/phoebe-zheng.html">Phoebe Zheng</a>
+        </address>
+<p>In <a href="https://33phoebe.github.io/category/posts.html">posts</a>.</p>
+<p>tags: <a href="https://33phoebe.github.io/tag/show.html">show</a> <a href="https://33phoebe.github.io/tag/sql.html">SQL</a> </p>
+</footer><!-- /.post-info -->                
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+                <a class="readmore" href="https://33phoebe.github.io/oscar.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
                             <li><a href="https://33phoebe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
+                            <li><a href="https://www.linkedin.com/in/33phoebe">LinkedIn</a></li>
+                            <li><a href="https://www.facebook.com/33phoebe">Facebook</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->
